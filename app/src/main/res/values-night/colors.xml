@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bg_end1">#B47765EB</color>
+    <color name="bg_end2">#DDF671E5</color>
+    <color name="bg_end3">#2CD3D3</color>
+    <color name="bg_end4">#F6AE42</color>
+    <color name="menuic">#D9EFEFEF</color>
+
+
+    <color name="colorPrimary">#5843DA</color>
+    <color name="colorPrimaryDark">#5843DA</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorTextPrimary">#ffffff</color>
+    <color name="colorTextSecondary">#A3FFFFFF</color>
+    <color name="colorBadge">#f4d415</color>
+</resources>

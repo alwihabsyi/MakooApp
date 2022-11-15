@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "832897435550",
+    "project_id": "makoo-app",
+    "storage_bucket": "makoo-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:832897435550:android:b9bd6286adfba5a6a4f88f",
+        "android_client_info": {
+          "package_name": "com.alwihabsyi.makooap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "832897435550-3a75r0cl4keaalnvpko3hdb57d3k56gm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsiCyoIX1hjH-VkOs5c0gMziGPv7mEC1U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "832897435550-3a75r0cl4keaalnvpko3hdb57d3k56gm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

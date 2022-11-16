@@ -217,6 +217,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cv_lihatstok"
                 android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:layout_below="@id/cv_jual"
@@ -257,6 +258,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cv_hapusstok"
                 android:layout_width="170dp"
                 android:layout_height="170dp"
                 android:layout_below="@id/cv_stok"

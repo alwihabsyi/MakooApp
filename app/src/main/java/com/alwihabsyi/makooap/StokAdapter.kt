@@ -4,8 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class StokAdapter(): RecyclerView.Adapter<StokViewHolder>() {
-    private val dataset = mutableListOf<DatabaseStok>()
+class StokAdapter(private val dataset : ArrayList<DatabaseStok>): RecyclerView.Adapter<StokViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StokViewHolder {
         return StokViewHolder(

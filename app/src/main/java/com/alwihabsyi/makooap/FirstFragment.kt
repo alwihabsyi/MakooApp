@@ -45,6 +45,18 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
             startActivity(intent)
         }
 
+        val tst = view.findViewById<CardView>(R.id.cv_lihatstok)
+        tst.setOnClickListener {
+            val intent = Intent(view.context, AddStock::class.java)
+            startActivity(intent)
+        }
+
+        val btnhps = view.findViewById<CardView>(R.id.cv_hapusstok)
+        btnhps.setOnClickListener {
+            val intent = Intent(view.context, DeleteStock::class.java)
+            startActivity(intent)
+        }
+
     }
 
 }

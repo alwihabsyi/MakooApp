@@ -9,24 +9,29 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.alwihabsyi.makooap.databinding.ActivityStockBinding
+import com.google.firebase.database.*
 
 class StockActivity : AppCompatActivity() {
-    @SuppressLint("MissingInflatedId")
+
+    private lateinit var binding: ActivityStockBinding
+    private lateinit var userRecyclerView: RecyclerView
+    private lateinit var userArrayList: ArrayList<DatabaseStok>
+    private lateinit var database: DatabaseReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_stock)
+        binding = ActivityStockBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         //RV STOK START
-        val stokList = mutableListOf<DatabaseStok>()
+        userRecyclerView = findViewById(R.id.rv_stoklist)
+        userRecyclerView.layoutManager = LinearLayoutManager(this)
+        userRecyclerView.setHasFixedSize(true)
 
-        val rvStok = findViewById<RecyclerView>(R.id.rv_stoklist)
-        val rvAdapter = StokAdapter()
+        userArrayList = arrayListOf<DatabaseStok>()
+        getItemsData()
 
-        rvStok.layoutManager = LinearLayoutManager(this)
-        rvStok.adapter = rvAdapter
-        rvAdapter.setNewData(stokList)
-
-        findViewById<TextView>(R.id.tv_angkatotal).text = stokList.size.toString()
 
         //INTENT
         val btnstok = findViewById<Button>(R.id.instok)
@@ -34,6 +39,29 @@ class StockActivity : AppCompatActivity() {
             val intent = Intent(this@StockActivity, AddStock::class.java)
             startActivity(intent)
         }
+
+    }
+
+    private fun getItemsData(){
+
+        database = FirebaseDatabase.getInstance().getReference("Items")
+        database.addValueEventListener(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    for(itemSnapshot in snapshot.children){
+                        val items = itemSnapshot.getValue(DatabaseStok::class.java)
+                        userArrayList.add(items!!)
+                    }
+                    userRecyclerView.adapter = StokAdapter(userArrayList)
+                    binding.tvAngkatotal.text = userArrayList.size.toString()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
 
     }
 }

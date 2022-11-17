@@ -4,15 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class StokAdapter(private val dataset : ArrayList<DatabaseStok>): RecyclerView.Adapter<StokViewHolder>() {
+class JualAdapter(private val dataset: ArrayList<DataJual>): RecyclerView.Adapter<JualViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StokViewHolder {
-        return StokViewHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JualViewHolder {
+        return JualViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.adapter_lv,parent,false)
         )
     }
 
-    override fun onBindViewHolder(holder: StokViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: JualViewHolder, position: Int) {
         holder.onBindView(dataset[position])
     }
 

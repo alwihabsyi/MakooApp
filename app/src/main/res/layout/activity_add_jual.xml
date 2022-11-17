@@ -20,7 +20,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/poppins_medium"
             android:padding="5dp"
-            android:text="Add Stock"
+            android:text="Add Jual"
             android:textSize="30sp" />
 
         <androidx.cardview.widget.CardView
@@ -61,7 +61,7 @@
                     app:boxStrokeWidth="0dp">
 
                     <EditText
-                        android:id="@+id/et_id"
+                        android:id="@+id/et_idjual"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:paddingTop="20dp"/>
@@ -91,7 +91,7 @@
                     app:boxStrokeWidth="0dp">
 
                     <EditText
-                        android:id="@+id/et_namabarang"
+                        android:id="@+id/et_jumlahterjual"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:paddingTop="20dp"/>
@@ -99,15 +99,15 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_savenewstock"
-                    android:layout_width="150dp"
+                    android:id="@+id/btn_addpenjualan"
+                    android:layout_width="170dp"
                     android:layout_height="48dp"
                     android:layout_below="@id/tl_nama"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="30dp"
                     android:background="@drawable/bg_btn"
                     android:elevation="5dp"
-                    android:text="Add Stock"
+                    android:text="Tambah Penjualan"
                     android:textColor="#FFFFFF" />
 
             </RelativeLayout>

@@ -14,6 +14,7 @@ class AddStock : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddStockBinding
     private lateinit var database: DatabaseReference
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddStockBinding.inflate(layoutInflater)

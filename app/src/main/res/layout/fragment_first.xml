@@ -100,7 +100,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_marginTop="15dp"
                         android:fontFamily="@font/poppins_bold"
-                        android:text="Rp."
+                        android:text="0"
                         android:textColor="@color/menuic"
                         android:textSize="20sp" />
 
@@ -113,7 +113,7 @@
                         android:layout_marginEnd="5dp"
                         android:layout_toRightOf="@id/RP"
                         android:fontFamily="@font/poppins_bold"
-                        android:text="-"
+                        android:text="Barang"
                         android:textColor="@color/menuic"
                         android:textSize="20sp" />
 
@@ -124,7 +124,7 @@
                         android:layout_marginStart="5dp"
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="Penjualan Hari Ini"
+                        android:text="Terjual Hari Ini"
                         android:textColor="@color/menuic"
                         android:textSize="12sp" />
 
@@ -170,13 +170,13 @@
 
                     <TextView
                         android:id="@+id/jumlah"
-                        android:layout_width="40dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:layout_below="@+id/stok"
                         android:layout_marginStart="5dp"
                         android:layout_marginTop="15dp"
                         android:fontFamily="@font/poppins_bold"
-                        android:text="100"
+                        android:text="0"
                         android:textColor="@color/menuic"
                         android:textSize="20sp" />
 
@@ -184,7 +184,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/stok"
-                        android:layout_marginStart="-3dp"
+                        android:layout_marginStart="5dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginEnd="5dp"
                         android:layout_toRightOf="@id/jumlah"
@@ -306,10 +306,21 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/rl_menu">
 
-            <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/barChart"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="300dp" />
+                android:layout_height="300dp"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="3dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
 
         </RelativeLayout>
 

@@ -68,7 +68,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
                     android:paddingEnd="10dp"
-                    android:text="Clear"
+                    android:text="Clear All"
                     android:textColor="#4A4A4A" />
 
             </RelativeLayout>

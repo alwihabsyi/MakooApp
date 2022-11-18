@@ -34,20 +34,6 @@ class AddJual : AppCompatActivity() {
             }.addOnFailureListener {
                 Toast.makeText(this, "Gagal Menambah", Toast.LENGTH_SHORT).show()
             }
-
-            database = FirebaseDatabase.getInstance().getReference("Items")
-            database.child(idjual).get().addOnSuccessListener {
-
-                if(it.exists()){
-
-                    val barang = it.child("jumlahbarang").value
-
-                }else{
-                    Toast.makeText(this, "ID NOT FOUND", Toast.LENGTH_SHORT).show()
-                }
-
-            }.addOnFailureListener {
-            }
         }
     }
 }

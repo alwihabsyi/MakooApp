@@ -64,4 +64,11 @@ class StockActivity : AppCompatActivity() {
         })
 
     }
+
+    override fun onRestart() {
+        super.onRestart()
+        val intent = intent
+        finish()
+        startActivity(intent)
+    }
 }

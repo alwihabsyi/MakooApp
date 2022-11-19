@@ -64,7 +64,7 @@
                         android:id="@+id/et_id"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:paddingTop="20dp"/>
+                        android:paddingTop="20dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,7 +94,7 @@
                         android:id="@+id/et_namabarang"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:paddingTop="20dp"/>
+                        android:paddingTop="20dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -124,7 +124,8 @@
                         android:id="@+id/et_jumlah"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:paddingTop="20dp"/>
+                        android:inputType="number"
+                        android:paddingTop="20dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -138,6 +139,7 @@
                     android:background="@drawable/bg_btn"
                     android:elevation="5dp"
                     android:text="Add Stock"
+                    android:textAllCaps="false"
                     android:textColor="#FFFFFF" />
 
                 <TextView
@@ -145,9 +147,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_above="@id/klikup"
-                    android:gravity="center"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="5dp"
+                    android:gravity="center"
                     android:text="Untuk update barang, cukup masukkan ID yang sama" />
 
                 <TextView

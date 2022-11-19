@@ -1,328 +1,335 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swiperefreshlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FirstFragment">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="10dp">
-
-        <RelativeLayout
-            android:id="@+id/rl_header"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="10dp">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="110dp"
-                android:layout_height="40dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="3dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="5dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/profpic"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:src="@drawable/img_prof" />
-
-                    <TextView
-                        android:id="@+id/profname"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="2dp"
-                        android:layout_marginBottom="10dp"
-                        android:layout_toRightOf="@+id/profpic"
-                        android:fontFamily="@font/galyon_bold"
-                        android:text="Alwi"
-                        android:textSize="20sp" />
-
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/rl_menu"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/rl_header"
-            android:paddingStart="10dp"
-            android:paddingTop="20dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="10dp">
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cv_jual"
-                android:layout_width="170dp"
-                android:layout_height="170dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="5dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="3dp">
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/bg_menu1" />
-
-                <RelativeLayout
-                    android:layout_width="155dp"
-                    android:layout_height="140dp"
-                    android:layout_gravity="center">
-
-                    <ImageView
-                        android:id="@+id/dollar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_dollar" />
-
-                    <TextView
-                        android:id="@+id/RP"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_below="@+id/dollar"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="15dp"
-                        android:fontFamily="@font/poppins_bold"
-                        android:text="0"
-                        android:textColor="@color/menuic"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/dollar"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_toRightOf="@id/RP"
-                        android:fontFamily="@font/poppins_bold"
-                        android:text="Barang"
-                        android:textColor="@color/menuic"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/RP"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="5dp"
-                        android:fontFamily="@font/poppins_medium"
-                        android:text="Terjual Hari Ini"
-                        android:textColor="@color/menuic"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginStart="5dp"
-                        android:text="Tekan untuk lihat selengkapnya >"
-                        android:textColor="@color/menuic"
-                        android:textSize="9sp" />
-
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cv_stok"
-                android:layout_width="170dp"
-                android:layout_height="170dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="3dp">
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/bg_menu2" />
-
-                <RelativeLayout
-                    android:layout_width="155dp"
-                    android:layout_height="140dp"
-                    android:layout_gravity="center">
-
-                    <ImageView
-                        android:id="@+id/stok"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_baseline_inventory" />
-
-                    <TextView
-                        android:id="@+id/jumlah"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_below="@+id/stok"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="15dp"
-                        android:fontFamily="@font/poppins_bold"
-                        android:text="0"
-                        android:textColor="@color/menuic"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/stok"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_toRightOf="@id/jumlah"
-                        android:fontFamily="@font/poppins_bold"
-                        android:text="Barang"
-                        android:textColor="@color/menuic"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/jumlah"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="5dp"
-                        android:fontFamily="@font/poppins_medium"
-                        android:text="Total Stok"
-                        android:textColor="@color/menuic"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:text="Tekan untuk lihat selengkapnya >"
-                        android:textColor="@color/menuic"
-                        android:textSize="9sp" />
-
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cv_lihatstok"
-                android:layout_width="170dp"
-                android:layout_height="170dp"
-                android:layout_below="@id/cv_jual"
-                android:layout_marginTop="15dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="5dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="3dp">
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/bg_menu3" />
-
-                <RelativeLayout
-                    android:layout_width="155dp"
-                    android:layout_height="140dp"
-                    android:layout_gravity="center">
-
-                    <ImageView
-                        android:id="@+id/plus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/ic_tambah" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/plus"
-                        android:layout_centerHorizontal="true"
-                        android:fontFamily="@font/galyon_bold"
-                        android:text="Tambah Stok"
-                        android:textColor="@color/menuic" />
-
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cv_hapusstok"
-                android:layout_width="170dp"
-                android:layout_height="170dp"
-                android:layout_below="@id/cv_stok"
-                android:layout_alignParentEnd="true"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="5dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="3dp">
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/bg_menu4" />
-
-                <RelativeLayout
-                    android:layout_width="155dp"
-                    android:layout_height="140dp"
-                    android:layout_gravity="center">
-
-                    <ImageView
-                        android:id="@+id/minus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:src="@drawable/ic_remove" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/minus"
-                        android:layout_centerHorizontal="true"
-                        android:fontFamily="@font/galyon_bold"
-                        android:text="Kurangi Stok"
-                        android:textColor="@color/menuic" />
-
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
-
-        </RelativeLayout>
+        android:layout_height="match_parent">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/rl_menu">
+            android:padding="10dp">
 
-            <androidx.cardview.widget.CardView
+            <RelativeLayout
+                android:id="@+id/rl_header"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_margin="10dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="3dp">
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp">
 
-                <RelativeLayout
+                <androidx.cardview.widget.CardView
+                    android:layout_width="110dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="3dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="5dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/profpic"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/img_prof" />
+
+                        <TextView
+                            android:id="@+id/profname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="2dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_toRightOf="@+id/profpic"
+                            android:fontFamily="@font/galyon_bold"
+                            android:text="Alwi"
+                            android:textSize="20sp" />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_menu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/rl_header"
+                android:paddingStart="10dp"
+                android:paddingTop="20dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="10dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_jual"
+                    android:layout_width="170dp"
+                    android:layout_height="170dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="3dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/bg_menu1" />
+
+                    <RelativeLayout
+                        android:layout_width="155dp"
+                        android:layout_height="140dp"
+                        android:layout_gravity="center">
+
+                        <ImageView
+                            android:id="@+id/dollar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_dollar" />
+
+                        <TextView
+                            android:id="@+id/RP"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_below="@+id/dollar"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="15dp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="0"
+                            android:textColor="@color/menuic"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/dollar"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_toRightOf="@id/RP"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="Barang"
+                            android:textColor="@color/menuic"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/RP"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Terjual Hari Ini"
+                            android:textColor="@color/menuic"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="5dp"
+                            android:text="Tekan untuk lihat selengkapnya >"
+                            android:textColor="@color/menuic"
+                            android:textSize="9sp" />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_stok"
+                    android:layout_width="170dp"
+                    android:layout_height="170dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="3dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/bg_menu2" />
+
+                    <RelativeLayout
+                        android:layout_width="155dp"
+                        android:layout_height="140dp"
+                        android:layout_gravity="center">
+
+                        <ImageView
+                            android:id="@+id/stok"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_baseline_inventory" />
+
+                        <TextView
+                            android:id="@+id/jumlah"
+                            android:layout_width="wrap_content"
+                            android:layout_height="30dp"
+                            android:layout_below="@+id/stok"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="15dp"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="0"
+                            android:textColor="@color/menuic"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/stok"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_toRightOf="@id/jumlah"
+                            android:fontFamily="@font/poppins_bold"
+                            android:text="Barang"
+                            android:textColor="@color/menuic"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/jumlah"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Total Stok"
+                            android:textColor="@color/menuic"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:text="Tekan untuk lihat selengkapnya >"
+                            android:textColor="@color/menuic"
+                            android:textSize="9sp" />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_lihatstok"
+                    android:layout_width="170dp"
+                    android:layout_height="170dp"
+                    android:layout_below="@id/cv_jual"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="5dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="3dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/bg_menu3" />
+
+                    <RelativeLayout
+                        android:layout_width="155dp"
+                        android:layout_height="140dp"
+                        android:layout_gravity="center">
+
+                        <ImageView
+                            android:id="@+id/plus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_tambah" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/plus"
+                            android:layout_centerHorizontal="true"
+                            android:fontFamily="@font/galyon_bold"
+                            android:text="Tambah Stok"
+                            android:textColor="@color/menuic" />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_hapusstok"
+                    android:layout_width="170dp"
+                    android:layout_height="170dp"
+                    android:layout_below="@id/cv_stok"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="5dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="3dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/bg_menu4" />
+
+                    <RelativeLayout
+                        android:layout_width="155dp"
+                        android:layout_height="140dp"
+                        android:layout_gravity="center">
+
+                        <ImageView
+                            android:id="@+id/minus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_remove" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/minus"
+                            android:layout_centerHorizontal="true"
+                            android:fontFamily="@font/galyon_bold"
+                            android:text="Hapus Stok"
+                            android:textColor="@color/menuic" />
+
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/rl_menu">
+
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="300dp"
+                    android:layout_margin="10dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="3dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
 
-                </RelativeLayout>
+                    </RelativeLayout>
 
-            </androidx.cardview.widget.CardView>
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
 
         </RelativeLayout>
 
-    </RelativeLayout>
-</ScrollView>
+    </ScrollView>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

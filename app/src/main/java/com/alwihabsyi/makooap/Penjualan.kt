@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alwihabsyi.makooap.databinding.ActivityPenjualanBinding
 import com.google.firebase.database.*
+import com.google.firebase.database.ktx.getValue
 
 class Penjualan : AppCompatActivity() {
 
@@ -87,5 +88,12 @@ class Penjualan : AppCompatActivity() {
 
         })
 
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        val intent = intent
+        finish()
+        startActivity(intent)
     }
 }

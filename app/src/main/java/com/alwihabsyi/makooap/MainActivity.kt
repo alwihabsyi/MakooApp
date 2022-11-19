@@ -2,6 +2,8 @@ package com.alwihabsyi.makooap
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.transition.Explode
+import android.view.Window
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.NavController
@@ -30,5 +32,12 @@ class MainActivity : AppCompatActivity() {
         popupMenu.inflate(R.menu.menu_bottom)
         val menu = popupMenu.menu
         binding.bottomNavigationView.setupWithNavController(menu, navController)
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        val intent = intent
+        finish()
+        startActivity(intent)
     }
 }

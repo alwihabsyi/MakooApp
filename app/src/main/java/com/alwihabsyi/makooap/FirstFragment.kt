@@ -3,6 +3,7 @@ package com.alwihabsyi.makooap
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Layout
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
@@ -58,6 +60,13 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
         jual.setOnClickListener {
             val intent = Intent(view.context, Penjualan::class.java)
             startActivity(intent)
+        }
+
+        //swipe to refresh
+        view.findViewById<SwipeRefreshLayout>(R.id.swiperefreshlayout).setOnRefreshListener {
+            val intent = Intent(this.context, MainActivity::class.java)
+            startActivity(intent)
+            activity?.overridePendingTransition(0,1)
         }
 
     }

@@ -21,20 +21,29 @@ class AddStock : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnSavenewstock.setOnClickListener {
+            val aidi = binding.etId.text
+            val nabar = binding.etNamabarang.text
+            val jubar = binding.etJumlah.text
             val id = binding.etId.text.toString()
             val namabarang = binding.etNamabarang.text.toString()
             val jumlahbarang = binding.etJumlah.text.toString()
 
-            database = FirebaseDatabase.getInstance().getReference("Items")
-            val items = DatabaseStok(id,namabarang, jumlahbarang)
-            database.child(id).setValue(items).addOnSuccessListener {
-                binding.etId.text.clear()
-                binding.etNamabarang.text.clear()
-                binding.etJumlah.text.clear()
+            if(aidi.isNotEmpty() && nabar.isNotEmpty() && jubar.isNotEmpty()){
+                database = FirebaseDatabase.getInstance().getReference("Items")
+                val items = DatabaseStok(id,namabarang, jumlahbarang)
+                database.child(id).setValue(items).addOnSuccessListener {
+                    binding.etId.text.clear()
+                    binding.etNamabarang.text.clear()
+                    binding.etJumlah.text.clear()
 
-                Toast.makeText(this, "Berhasil Tersimpan", Toast.LENGTH_SHORT).show()
-            }.addOnFailureListener {
-                Toast.makeText(this, "Gagal Menyimpan", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Berhasil Tersimpan", Toast.LENGTH_SHORT).show()
+                }.addOnFailureListener {
+                    Toast.makeText(this, "Gagal Menyimpan", Toast.LENGTH_SHORT).show()
+                }
+            }else if(jumlahbarang.equals(String)) {
+                Toast.makeText(this, "Jumlah Barang Harus Angka", Toast.LENGTH_SHORT).show()
+            }else {
+                Toast.makeText(this, "Semua Field Harus Diisi", Toast.LENGTH_SHORT).show()
             }
         }
     }

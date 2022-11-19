@@ -19,7 +19,7 @@ class Penjualan : AppCompatActivity() {
 
     private lateinit var binding: ActivityPenjualanBinding
     private lateinit var userRecyclerView: RecyclerView
-    private lateinit var userArrayList: ArrayList<DataJual>
+    private lateinit var userArrayList: ArrayList<DatabaseStok>
     private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +32,7 @@ class Penjualan : AppCompatActivity() {
         userRecyclerView.layoutManager = LinearLayoutManager(this)
         userRecyclerView.setHasFixedSize(true)
 
-        userArrayList = arrayListOf<DataJual>()
+        userArrayList = arrayListOf<DatabaseStok>()
         getDataJual()
 
         binding.btnClearall.setOnClickListener {
@@ -74,10 +74,10 @@ class Penjualan : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     for(itemSnapshot in snapshot.children){
-                        val items = itemSnapshot.getValue(DataJual::class.java)
+                        val items = itemSnapshot.getValue(DatabaseStok::class.java)
                         userArrayList.add(items!!)
                     }
-                    userRecyclerView.adapter = JualAdapter(userArrayList)
+                    userRecyclerView.adapter = StokAdapter(userArrayList)
                     binding.tvAngkajual.text = userArrayList.size.toString()
                 }
             }

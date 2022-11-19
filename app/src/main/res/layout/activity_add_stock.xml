@@ -64,6 +64,7 @@
                         android:id="@+id/et_id"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:maxLength="3"
                         android:paddingTop="20dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -94,6 +95,7 @@
                         android:id="@+id/et_namabarang"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:maxLength="10"
                         android:paddingTop="20dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -125,6 +127,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:inputType="number"
+                        android:maxLength="4"
                         android:paddingTop="20dp" />
 
                 </com.google.android.material.textfield.TextInputLayout>

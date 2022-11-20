@@ -60,6 +60,11 @@ class AddJual : AppCompatActivity() {
                                     databaseitem.child(idjual).setValue(items).addOnFailureListener {
                                         Toast.makeText(this, "Gagal Menambah", Toast.LENGTH_SHORT).show()
                                     }
+                                    if (jufix == 0) {
+                                        databaseitem.child(idjual).removeValue().addOnFailureListener {
+                                            Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT).show()
+                                        }
+                                    }
                                 }
                             }
                             else{

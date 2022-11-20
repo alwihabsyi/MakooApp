@@ -70,10 +70,10 @@ class Penjualan : AppCompatActivity() {
     private fun getDataJual() {
 
         database = FirebaseDatabase.getInstance().getReference("Sale")
-        database.addValueEventListener(object: ValueEventListener {
+        database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    for(itemSnapshot in snapshot.children){
+                if (snapshot.exists()) {
+                    for (itemSnapshot in snapshot.children) {
                         val items = itemSnapshot.getValue(DataJual::class.java)
                         userArrayList.add(items!!)
                     }

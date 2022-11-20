@@ -32,47 +32,58 @@ class AddJual : AppCompatActivity() {
 
                 //get data barang dari Items
                 databaseitem.child(idjual).get().addOnSuccessListener {
-                    if(it.exists()){
+                    if (it.exists()) {
                         databasesale.child(idjual).get().addOnSuccessListener {
-                            if(it.exists()){
+                            if (it.exists()) {
                                 val idjual = it.child("idjual").value.toString()
                                 val barangjual = it.child("barangjual").value.toString()
-                                val jual = Integer.parseInt(it.child("jumlahbarangjual").value.toString())
+                                val jual =
+                                    Integer.parseInt(it.child("jumlahbarangjual").value.toString())
 
                                 val jufix = (jual).plus(jumlah)
                                 val jumlahbarangjual = jufix.toString()
-                                val sale = DataJual(idjual,barangjual, jumlahbarangjual)
+                                val sale = DataJual(idjual, barangjual, jumlahbarangjual)
 
                                 databasesale.child(idjual).setValue(sale).addOnSuccessListener {
                                     binding.etIdjual.text.clear()
                                     binding.etJumlahterjual.text.clear()
-                                    Toast.makeText(this, "Berhasil Menambah", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this, "Berhasil Menambah", Toast.LENGTH_SHORT)
+                                        .show()
                                 }.addOnFailureListener {
-                                    Toast.makeText(this, "Gagal Menambah", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this, "Gagal Menambah", Toast.LENGTH_SHORT)
+                                        .show()
                                 }
-                                databaseitem.child(idjual).get().addOnSuccessListener{
-                                    val jual = Integer.parseInt(it.child("jumlahbarang").value.toString())
+                                databaseitem.child(idjual).get().addOnSuccessListener {
+                                    val jual =
+                                        Integer.parseInt(it.child("jumlahbarang").value.toString())
                                     val jufixitem = (jual).minus(jumlah)
                                     val id = idjual
                                     val namabarang = barangjual
                                     val jumlahbarang = jufixitem.toString()
                                     val items = DatabaseStok(id, namabarang, jumlahbarang)
-                                    databaseitem.child(idjual).setValue(items).addOnFailureListener {
-                                        Toast.makeText(this, "Gagal Menambah", Toast.LENGTH_SHORT).show()
-                                    }
-                                    if (jufix == 0) {
-                                        databaseitem.child(idjual).removeValue().addOnFailureListener {
-                                            Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT).show()
+                                    databaseitem.child(idjual).setValue(items)
+                                        .addOnFailureListener {
+                                            Toast.makeText(
+                                                this,
+                                                "Gagal Menambah",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
                                         }
+                                    if (jufix == 0) {
+                                        databaseitem.child(idjual).removeValue()
+                                            .addOnFailureListener {
+                                                Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT)
+                                                    .show()
+                                            }
                                     }
                                 }
-                            }
-                            else{
-                                databaseitem.child(idjual).get().addOnSuccessListener{
-                                    if(it.exists()){
+                            } else {
+                                databaseitem.child(idjual).get().addOnSuccessListener {
+                                    if (it.exists()) {
                                         val id = it.child("id").value.toString()
                                         val namabarang2 = it.child("namabarang").value.toString()
-                                        val jual = Integer.parseInt(it.child("jumlahbarang").value.toString())
+                                        val jual =
+                                            Integer.parseInt(it.child("jumlahbarang").value.toString())
 
                                         //mengurangi jumlah barang dengan barang terjual
 
@@ -88,28 +99,51 @@ class AddJual : AppCompatActivity() {
                                         databasesale.child(id).setValue(sale).addOnSuccessListener {
                                             binding.etIdjual.text.clear()
                                             binding.etJumlahterjual.text.clear()
-                                            Toast.makeText(this, "Berhasil Menambah", Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(
+                                                this,
+                                                "Berhasil Menambah",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
                                         }.addOnFailureListener {
-                                            Toast.makeText(this, "Gagal Menambah", Toast.LENGTH_SHORT).show()
+                                            Toast.makeText(
+                                                this,
+                                                "Gagal Menambah",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
                                         }
-                                        databaseitem.child(id).setValue(items).addOnFailureListener {
-                                            Toast.makeText(this, "Gagal Menambah", Toast.LENGTH_SHORT).show()
-                                        }
+                                        databaseitem.child(id).setValue(items)
+                                            .addOnFailureListener {
+                                                Toast.makeText(
+                                                    this,
+                                                    "Gagal Menambah",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                            }
 
                                         //apabila barang - dari 1 maka dihapus
                                         if (jufix == 0) {
-                                            databasesale.child(id).removeValue().addOnFailureListener {
-                                                Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT).show()
-                                            }
-                                            databaseitem.child(id).removeValue().addOnFailureListener {
-                                                Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT).show()
-                                            }
+                                            databasesale.child(id).removeValue()
+                                                .addOnFailureListener {
+                                                    Toast.makeText(
+                                                        this,
+                                                        "Gagal",
+                                                        Toast.LENGTH_SHORT
+                                                    ).show()
+                                                }
+                                            databaseitem.child(id).removeValue()
+                                                .addOnFailureListener {
+                                                    Toast.makeText(
+                                                        this,
+                                                        "Gagal",
+                                                        Toast.LENGTH_SHORT
+                                                    ).show()
+                                                }
                                         }
                                     }
                                 }
                             }
                         }
-                    }else{
+                    } else {
                         Toast.makeText(this, "Barang Tidak Ada", Toast.LENGTH_SHORT).show()
                     }
                 }

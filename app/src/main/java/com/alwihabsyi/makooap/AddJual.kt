@@ -44,7 +44,11 @@ class AddJual : AppCompatActivity() {
 
                         //update barang
 
-                        val sale = DataJual(id, namabarang2, jufix.toString())
+                        val namabarang = namabarang2
+                        val jumlahbarang = jufix.toString()
+                        val items = DatabaseStok(id, namabarang, jumlahbarang)
+                        val sale = DataJual(id, namabarang, jumlahbarangjual)
+
                         database.child(id).setValue(sale).addOnSuccessListener {
                             binding.etIdjual.text.clear()
                             binding.etJumlahterjual.text.clear()
@@ -52,7 +56,7 @@ class AddJual : AppCompatActivity() {
                         }.addOnFailureListener {
                             Toast.makeText(this, "Gagal Menambah", Toast.LENGTH_SHORT).show()
                         }
-                        database2.child(id).setValue(sale).addOnFailureListener {
+                        database2.child(id).setValue(items).addOnFailureListener {
                             Toast.makeText(this, "Gagal Menambah", Toast.LENGTH_SHORT).show()
                         }
 

@@ -21,7 +21,6 @@ import com.google.firebase.database.*
 
 class FirstFragment : Fragment(R.layout.fragment_first) {
     lateinit var database: DatabaseReference
-    lateinit var databasestok: DatabaseReference
     lateinit var userArrayList: ArrayList<DatabaseStok>
     lateinit var userArrayList2: ArrayList<DataJual>
     lateinit var list: ArrayList<PieEntry>

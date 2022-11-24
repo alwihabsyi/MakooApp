@@ -313,7 +313,7 @@
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
+                    android:layout_height="350dp"
                     android:layout_margin="10dp"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="3dp">
@@ -322,6 +322,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/piechart_stok"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="10dp" />
 
                     </RelativeLayout>
 

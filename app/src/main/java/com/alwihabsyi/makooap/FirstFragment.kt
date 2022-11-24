@@ -14,22 +14,24 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.github.mikephil.charting.charts.BarChart
-import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.BarDataSet
-import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.firebase.database.*
 
 class FirstFragment : Fragment(R.layout.fragment_first) {
     lateinit var database: DatabaseReference
+    lateinit var databasestok: DatabaseReference
     lateinit var userArrayList: ArrayList<DatabaseStok>
     lateinit var userArrayList2: ArrayList<DataJual>
-
+    lateinit var list: ArrayList<PieEntry>
+    lateinit var piechart: PieChart
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         //TV JUMLAH STOK START
+        list = ArrayList()
         userArrayList = arrayListOf<DatabaseStok>()
         userArrayList2 = arrayListOf<DataJual>()
         tvjumlahstok()
@@ -69,6 +71,8 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
             activity?.overridePendingTransition(0,1)
         }
 
+        //PieChart Stok
+        piechart = view.findViewById(R.id.piechart_stok)
     }
 
     private fun tvjumlahterjual() {
@@ -83,6 +87,19 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
                     }
 
                     view?.findViewById<TextView>(R.id.RP)?.text = userArrayList2.size.toString()
+                    val pie = userArrayList2.size.toFloat()
+                    list.add(PieEntry(pie,"Terjual"))
+
+                    val pieDataSet= PieDataSet(list, "")
+                    pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS, 255)
+                    pieDataSet.valueTextSize = 15f
+                    pieDataSet.valueTextColor = Color.BLACK
+
+                    val pieData = PieData(pieDataSet)
+                    piechart.data = pieData
+                    piechart.description.text = "Pie Chart"
+                    piechart.centerText = "List"
+                    piechart.animateY(2000)
 
                 }
             }
@@ -107,6 +124,19 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
                     }
 
                     view?.findViewById<TextView>(R.id.jumlah)?.text = userArrayList.size.toString()
+                    val pie = userArrayList.size.toFloat()
+                    list.add(PieEntry(pie,"Stok"))
+
+                    val pieDataSet= PieDataSet(list, "")
+                    pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS, 255)
+                    pieDataSet.valueTextSize = 15f
+                    pieDataSet.valueTextColor = Color.BLACK
+
+                    val pieData = PieData(pieDataSet)
+                    piechart.data = pieData
+                    piechart.description.text = "Pie Chart"
+                    piechart.centerText = "List"
+                    piechart.animateY(2000)
                 }
             }
 

@@ -24,24 +24,25 @@ class AddStock : AppCompatActivity() {
             val aidi = binding.etId.text
             val nabar = binding.etNamabarang.text
             val jubar = binding.etJumlah.text
+            val habar = binding.etHarga.text
             val id = binding.etId.text.toString()
             val namabarang = binding.etNamabarang.text.toString()
             val jumlahbarang = binding.etJumlah.text.toString()
+            val hargabarang = binding.etJumlah.text.toString()
 
-            if(aidi.isNotEmpty() && nabar.isNotEmpty() && jubar.isNotEmpty()){
+            if(aidi.isNotEmpty() && nabar.isNotEmpty() && jubar.isNotEmpty() && habar.isNotEmpty()){
                 database = FirebaseDatabase.getInstance().getReference("Items")
-                val items = DatabaseStok(id,namabarang, jumlahbarang)
+                val items = DatabaseStok(id,namabarang, hargabarang,jumlahbarang)
                 database.child(id).setValue(items).addOnSuccessListener {
                     binding.etId.text.clear()
                     binding.etNamabarang.text.clear()
                     binding.etJumlah.text.clear()
+                    binding.etHarga.text.clear()
 
                     Toast.makeText(this, "Berhasil Tersimpan", Toast.LENGTH_SHORT).show()
                 }.addOnFailureListener {
                     Toast.makeText(this, "Gagal Menyimpan", Toast.LENGTH_SHORT).show()
                 }
-            }else if(jumlahbarang.equals(String)) {
-                Toast.makeText(this, "Jumlah Barang Harus Angka", Toast.LENGTH_SHORT).show()
             }else {
                 Toast.makeText(this, "Semua Field Harus Diisi", Toast.LENGTH_SHORT).show()
             }

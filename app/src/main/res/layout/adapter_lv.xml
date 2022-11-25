@@ -23,8 +23,7 @@
         <TextView
             android:id="@+id/tv_namabarang"
             android:layout_toRightOf="@+id/nomor"
-            android:paddingStart="50dp"
-            android:layout_width="170dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="Nama Barang"
             android:textSize="14sp" />
@@ -33,9 +32,28 @@
             android:id="@+id/tv_jumlahbarang"
             android:layout_toRightOf="@+id/tv_namabarang"
             android:gravity="center"
-            android:layout_width="120dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:text="70"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_rp"
+            android:layout_toRightOf="@+id/tv_jumlahbarang"
+            android:paddingStart="30dp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rp."
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_hargabarang"
+            android:layout_toRightOf="@+id/tv_rp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100,000"
             android:textSize="14sp" />
 
     </RelativeLayout>

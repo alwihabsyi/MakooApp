@@ -30,7 +30,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="100dp"
             android:layout_marginEnd="5dp"
-            android:layout_marginBottom="70dp"
+            android:layout_marginBottom="40dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="5dp">
 
@@ -101,10 +101,42 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
-                    android:id="@+id/jumlahstok"
+                    android:id="@+id/hargastok"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tl_nama"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Harga Barang"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tl_harga"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/hargastok"
+                    app:boxBackgroundMode="outline"
+                    app:boxCornerRadiusBottomEnd="10dp"
+                    app:boxCornerRadiusBottomStart="10dp"
+                    app:boxCornerRadiusTopEnd="10dp"
+                    app:boxCornerRadiusTopStart="10dp"
+                    app:boxStrokeWidth="0dp">
+
+                    <EditText
+                        android:id="@+id/et_harga"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="number"
+                        android:maxLength="6"
+                        android:paddingTop="20dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/jumlahstok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tl_harga"
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Jumlah Barang"

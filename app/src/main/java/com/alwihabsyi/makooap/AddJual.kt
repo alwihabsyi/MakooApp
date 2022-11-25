@@ -37,12 +37,13 @@ class AddJual : AppCompatActivity() {
                             if (it.exists()) {
                                 val idjual = it.child("idjual").value.toString()
                                 val barangjual = it.child("barangjual").value.toString()
+                                val hargajual = it.child("hargabarangjual").value.toString()
                                 val jual =
                                     Integer.parseInt(it.child("jumlahbarangjual").value.toString())
 
                                 val jufix = (jual).plus(jumlah)
                                 val jumlahbarangjual = jufix.toString()
-                                val sale = DataJual(idjual, barangjual, jumlahbarangjual)
+                                val sale = DataJual(idjual, barangjual, hargajual, jumlahbarangjual)
 
                                 databasesale.child(idjual).setValue(sale).addOnSuccessListener {
                                     binding.etIdjual.text.clear()
@@ -59,8 +60,10 @@ class AddJual : AppCompatActivity() {
                                     val jufixitem = (jual).minus(jumlah)
                                     val id = idjual
                                     val namabarang = barangjual
+                                    val hargabarang = hargajual
                                     val jumlahbarang = jufixitem.toString()
-                                    val items = DatabaseStok(id, namabarang, jumlahbarang)
+                                    val items =
+                                        DatabaseStok(id, namabarang, hargabarang, jumlahbarang)
                                     databaseitem.child(idjual).setValue(items)
                                         .addOnFailureListener {
                                             Toast.makeText(
@@ -82,6 +85,7 @@ class AddJual : AppCompatActivity() {
                                     if (it.exists()) {
                                         val id = it.child("id").value.toString()
                                         val namabarang2 = it.child("namabarang").value.toString()
+                                        val hargabarang = it.child("hargabarang").value.toString()
                                         val jual =
                                             Integer.parseInt(it.child("jumlahbarang").value.toString())
 
@@ -93,8 +97,10 @@ class AddJual : AppCompatActivity() {
 
                                         val namabarang = namabarang2
                                         val jumlahbarang = jufix.toString()
-                                        val items = DatabaseStok(id, namabarang, jumlahbarang)
-                                        val sale = DataJual(id, namabarang, jumlahbarangjual)
+                                        val items =
+                                            DatabaseStok(id, namabarang, hargabarang, jumlahbarang)
+                                        val sale =
+                                            DataJual(id, namabarang, hargabarang, jumlahbarangjual)
 
                                         databasesale.child(id).setValue(sale).addOnSuccessListener {
                                             binding.etIdjual.text.clear()

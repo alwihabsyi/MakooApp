@@ -37,13 +37,19 @@ class DeleteStock : AppCompatActivity() {
                 val yesbtn = dialogBinding.findViewById<Button>(R.id.btn_yes)
                 yesbtn.setOnClickListener {
                     database = FirebaseDatabase.getInstance().getReference("Items")
-                    database.child(id).removeValue().addOnSuccessListener {
-                        binding.etId.text.clear()
-                        Toast.makeText(this, "Berhasil Menghapus", Toast.LENGTH_SHORT).show()
-                    }.addOnFailureListener {
-                        Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT).show()
+                    database.child(id).get().addOnSuccessListener {
+                        if(it.exists()){
+                            database.child(id).removeValue().addOnSuccessListener {
+                                binding.etId.text.clear()
+                                Toast.makeText(this, "Berhasil Menghapus", Toast.LENGTH_SHORT).show()
+                            }.addOnFailureListener {
+                                Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT).show()
+                            }
+                        }else{
+                            Toast.makeText(this, "Barang Tidak Ada", Toast.LENGTH_SHORT).show()
+                        }
+                        dialog.dismiss()
                     }
-                    dialog.dismiss()
                 }
 
                 val nobtn = dialogBinding.findViewById<Button>(R.id.btn_no)

@@ -12,6 +12,7 @@ class AddJual : AppCompatActivity() {
     private lateinit var binding: ActivityAddJualBinding
     private lateinit var databaseitem: DatabaseReference
     private lateinit var databasesale: DatabaseReference
+    private lateinit var databaselaporan: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +30,7 @@ class AddJual : AppCompatActivity() {
                 //reference database
                 databasesale = FirebaseDatabase.getInstance().getReference("Sale")
                 databaseitem = FirebaseDatabase.getInstance().getReference("Items")
+                databaselaporan = FirebaseDatabase.getInstance().getReference("Laporan")
 
                 //get data barang dari Items
                 databaseitem.child(idjual).get().addOnSuccessListener {
@@ -38,12 +40,14 @@ class AddJual : AppCompatActivity() {
                                 val idjual = it.child("idjual").value.toString()
                                 val barangjual = it.child("barangjual").value.toString()
                                 val hargajual = it.child("hargabarangjual").value.toString()
+                                val hg = Integer.parseInt(hargajual)
                                 val jual =
                                     Integer.parseInt(it.child("jumlahbarangjual").value.toString())
 
                                 val jufix = (jual).plus(jumlah)
                                 val jumlahbarangjual = jufix.toString()
-                                val sale = DataJual(idjual, barangjual, hargajual, jumlahbarangjual)
+                                val hargap = (jumlah).times(hg)
+                                val sale = DataJual(idjual, barangjual, jumlahbarangjual, hargajual)
 
                                 databasesale.child(idjual).setValue(sale).addOnSuccessListener {
                                     binding.etIdjual.text.clear()
@@ -54,16 +58,35 @@ class AddJual : AppCompatActivity() {
                                     Toast.makeText(this, "Gagal Menambah", Toast.LENGTH_SHORT)
                                         .show()
                                 }
+                                databaselaporan.child("total").get().addOnSuccessListener {
+                                    val jumlahlapor =
+                                        Integer.parseInt(it.child("jumlahbarang").value.toString())
+                                    val hargabarang =
+                                        Integer.parseInt(it.child("totalharga").value.toString())
+
+                                    val jumlahterlapor = (jumlahlapor).plus(jumlah)
+                                    val hargabaranglapor = (hargabarang).plus(hargap)
+
+                                    val jumpor = jumlahterlapor.toString()
+                                    val hapor = hargabaranglapor.toString()
+                                    val total = DataLaporan(jumpor, hapor)
+
+                                    databaselaporan.child("total").setValue(total)
+                                        .addOnFailureListener {
+                                            Toast.makeText(
+                                                this,
+                                                "Gagal Menambah",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
+                                }
                                 databaseitem.child(idjual).get().addOnSuccessListener {
                                     val jual =
                                         Integer.parseInt(it.child("jumlahbarang").value.toString())
                                     val jufixitem = (jual).minus(jumlah)
-                                    val id = idjual
-                                    val namabarang = barangjual
-                                    val hargabarang = hargajual
                                     val jumlahbarang = jufixitem.toString()
                                     val items =
-                                        DatabaseStok(id, namabarang, hargabarang, jumlahbarang)
+                                        DatabaseStok(idjual, barangjual, jumlahbarang, hargajual)
                                     databaseitem.child(idjual).setValue(items)
                                         .addOnFailureListener {
                                             Toast.makeText(
@@ -88,19 +111,25 @@ class AddJual : AppCompatActivity() {
                                         val hargabarang = it.child("hargabarang").value.toString()
                                         val jual =
                                             Integer.parseInt(it.child("jumlahbarang").value.toString())
+                                        val hg = Integer.parseInt(hargabarang)
 
                                         //mengurangi jumlah barang dengan barang terjual
 
                                         val jufix = (jual).minus(jumlah)
+
+                                        //operasi tambah kali utk laporan
+                                        val hargap = (jumlah).times(hg)
+                                        val hargabaranglapor = hargap.toString()
 
                                         //update barang
 
                                         val namabarang = namabarang2
                                         val jumlahbarang = jufix.toString()
                                         val items =
-                                            DatabaseStok(id, namabarang, hargabarang, jumlahbarang)
+                                            DatabaseStok(id, namabarang, jumlahbarang, hargabarang)
                                         val sale =
-                                            DataJual(id, namabarang, hargabarang, jumlahbarangjual)
+                                            DataJual(id, namabarang, jumlahbarangjual, hargabarang)
+                                        val total = DataLaporan(jumlahbarangjual, hargabaranglapor)
 
                                         databasesale.child(id).setValue(sale).addOnSuccessListener {
                                             binding.etIdjual.text.clear()
@@ -118,6 +147,14 @@ class AddJual : AppCompatActivity() {
                                             ).show()
                                         }
                                         databaseitem.child(id).setValue(items)
+                                            .addOnFailureListener {
+                                                Toast.makeText(
+                                                    this,
+                                                    "Gagal Menambah",
+                                                    Toast.LENGTH_SHORT
+                                                ).show()
+                                            }
+                                        databaselaporan.child("total").setValue(total)
                                             .addOnFailureListener {
                                                 Toast.makeText(
                                                     this,

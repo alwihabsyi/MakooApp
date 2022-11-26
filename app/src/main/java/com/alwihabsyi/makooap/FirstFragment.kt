@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -60,6 +61,18 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
         val jual = view.findViewById<CardView>(R.id.cv_jual)
         jual.setOnClickListener {
             val intent = Intent(view.context, Penjualan::class.java)
+            startActivity(intent)
+        }
+
+        val lapor = view.findViewById<CardView>(R.id.cv_laporan)
+        lapor.setOnClickListener {
+            val intent = Intent(view.context, LaporanPenjualan::class.java)
+            startActivity(intent)
+        }
+
+        val btnlapor = view.findViewById<ImageView>(R.id.siv_lapor)
+        btnlapor.setOnClickListener {
+            val intent = Intent(view.context, LaporanPenjualan::class.java)
             startActivity(intent)
         }
 

@@ -28,11 +28,11 @@ class AddStock : AppCompatActivity() {
             val id = binding.etId.text.toString()
             val namabarang = binding.etNamabarang.text.toString()
             val jumlahbarang = binding.etJumlah.text.toString()
-            val hargabarang = binding.etJumlah.text.toString()
+            val hargabarang = binding.etHarga.text.toString()
 
             if(aidi.isNotEmpty() && nabar.isNotEmpty() && jubar.isNotEmpty() && habar.isNotEmpty()){
                 database = FirebaseDatabase.getInstance().getReference("Items")
-                val items = DatabaseStok(id,namabarang, hargabarang,jumlahbarang)
+                val items = DatabaseStok(id,namabarang, jumlahbarang,hargabarang)
                 database.child(id).setValue(items).addOnSuccessListener {
                     binding.etId.text.clear()
                     binding.etNamabarang.text.clear()

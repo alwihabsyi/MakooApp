@@ -6,3 +6,8 @@ data class DataJual(
     val jumlahbarangjual: String? = null,
     val hargabarangjual: String? = null
 )
+
+data class DataLaporan(
+    val jumlahbarang: String? = null,
+    val totalharga: String? = null
+)

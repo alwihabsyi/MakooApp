@@ -24,13 +24,13 @@ class AddJual : AppCompatActivity() {
             val jujual = binding.etJumlahterjual.text
             val idjual = binding.etIdjual.text.toString()
             val jumlahbarangjual = binding.etJumlahterjual.text.toString()
-            val jumlah = Integer.parseInt(jumlahbarangjual)
 
             if (aidi.isNotEmpty() && jujual.isNotEmpty()) {
                 //reference database
                 databasesale = FirebaseDatabase.getInstance().getReference("Sale")
                 databaseitem = FirebaseDatabase.getInstance().getReference("Items")
                 databaselaporan = FirebaseDatabase.getInstance().getReference("Laporan")
+                val jumlah = Integer.parseInt(jumlahbarangjual)
 
                 //get data barang dari Items
                 databaseitem.child(idjual).get().addOnSuccessListener {

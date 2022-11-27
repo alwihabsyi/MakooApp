@@ -21,6 +21,7 @@ import com.github.mikephil.charting.utils.ColorTemplate
 import com.google.firebase.database.*
 
 class FirstFragment : Fragment(R.layout.fragment_first) {
+
     lateinit var database: DatabaseReference
     lateinit var userArrayList: ArrayList<DatabaseStok>
     lateinit var userArrayList2: ArrayList<DataLaporan>

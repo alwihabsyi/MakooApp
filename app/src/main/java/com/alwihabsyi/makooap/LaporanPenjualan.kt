@@ -54,6 +54,7 @@ class LaporanPenjualan : AppCompatActivity() {
                     if (it.exists()) {
                         database.removeValue().addOnSuccessListener {
                             Toast.makeText(this, "Berhasil Menghapus", Toast.LENGTH_SHORT).show()
+                            Refresh()
                         }.addOnFailureListener {
                             Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT).show()
                         }
@@ -69,12 +70,15 @@ class LaporanPenjualan : AppCompatActivity() {
                 dialog.dismiss()
             }
         }
-
         //swiperefresh
         binding.srlLappenjualan.setOnRefreshListener {
-            onRestart()
-            overridePendingTransition(0,1)
+            Refresh()
         }
+    }
+
+    private fun Refresh(){
+        onRestart()
+        overridePendingTransition(0,1)
     }
 
     private fun getDataJual() {

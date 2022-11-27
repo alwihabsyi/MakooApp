@@ -122,16 +122,11 @@
 
                 </TableRow>
 
-                <TableRow
-                    android:background="@color/menuic">
-
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_stoklist"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         tools:listitem="@layout/adapter_lv"/>
-
-                </TableRow>
 
             </TableLayout>
 

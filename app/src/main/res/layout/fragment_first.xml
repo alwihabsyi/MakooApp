@@ -112,26 +112,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/dollar"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_toRightOf="@id/RP"
-                            android:fontFamily="@font/poppins_bold"
-                            android:text="Barang"
-                            android:textColor="@color/menuic"
-                            android:textSize="20sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:layout_below="@+id/RP"
                             android:layout_marginStart="5dp"
-                            android:layout_marginTop="5dp"
                             android:fontFamily="@font/poppins_medium"
-                            android:text="Terjual Hari Ini"
+                            android:text="Barang Terjual"
                             android:textColor="@color/menuic"
-                            android:textSize="12sp" />
+                            android:textSize="17sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -188,26 +174,12 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_below="@+id/stok"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginEnd="5dp"
-                            android:layout_toRightOf="@id/jumlah"
-                            android:fontFamily="@font/poppins_bold"
-                            android:text="Barang"
-                            android:textColor="@color/menuic"
-                            android:textSize="20sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:layout_below="@+id/jumlah"
                             android:layout_marginStart="5dp"
-                            android:layout_marginTop="5dp"
                             android:fontFamily="@font/poppins_medium"
-                            android:text="Total Stok"
+                            android:text="Jenis Barang"
                             android:textColor="@color/menuic"
-                            android:textSize="12sp" />
+                            android:textSize="17sp" />
 
                         <TextView
                             android:layout_width="wrap_content"

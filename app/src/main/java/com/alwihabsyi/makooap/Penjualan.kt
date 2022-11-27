@@ -47,10 +47,16 @@ class Penjualan : AppCompatActivity() {
             val yesbtn = dialogBinding.findViewById<Button>(R.id.btn_yes)
             yesbtn.setOnClickListener {
                 database = FirebaseDatabase.getInstance().getReference("Sale")
-                database.removeValue().addOnSuccessListener {
-                    Toast.makeText(this, "Berhasil Menghapus", Toast.LENGTH_SHORT).show()
-                }.addOnFailureListener {
-                    Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT).show()
+                database.get().addOnSuccessListener {
+                    if (it.exists()) {
+                        database.removeValue().addOnSuccessListener {
+                            Toast.makeText(this, "Berhasil Menghapus", Toast.LENGTH_SHORT).show()
+                        }.addOnFailureListener {
+                            Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(this, "Tidak ada barang", Toast.LENGTH_SHORT).show()
+                    }
                 }
                 dialog.dismiss()
             }
@@ -64,6 +70,12 @@ class Penjualan : AppCompatActivity() {
         binding.btnAddjual.setOnClickListener {
             val intent = Intent(this@Penjualan, AddJual::class.java)
             startActivity(intent)
+        }
+
+        //swiperefresh
+        binding.srlPenjualan.setOnRefreshListener {
+            onRestart()
+            overridePendingTransition(0,1)
         }
     }
 

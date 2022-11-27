@@ -1,8 +1,14 @@
 package com.alwihabsyi.makooap
 
+import android.app.Dialog
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alwihabsyi.makooap.databinding.ActivityLaporanPenjualanBinding
@@ -31,6 +37,44 @@ class LaporanPenjualan : AppCompatActivity() {
         userArrayList = arrayListOf<DataJual>()
         laporanArrayList = arrayListOf<DataLaporan>()
         getDataJual()
+
+        binding.btnClearallap.setOnClickListener {
+            val dialogBinding = layoutInflater.inflate(R.layout.ays_dialog, null)
+            val dialog = Dialog(this)
+            dialog.setContentView(dialogBinding)
+
+            dialog.setCancelable(true)
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.show()
+
+            val yesbtn = dialogBinding.findViewById<Button>(R.id.btn_yes)
+            yesbtn.setOnClickListener {
+                database = FirebaseDatabase.getInstance().getReference("Laporan")
+                database.get().addOnSuccessListener {
+                    if (it.exists()) {
+                        database.removeValue().addOnSuccessListener {
+                            Toast.makeText(this, "Berhasil Menghapus", Toast.LENGTH_SHORT).show()
+                        }.addOnFailureListener {
+                            Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(this, "Tidak ada barang", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                dialog.dismiss()
+            }
+
+            val nobtn = dialogBinding.findViewById<Button>(R.id.btn_no)
+            nobtn.setOnClickListener {
+                dialog.dismiss()
+            }
+        }
+
+        //swiperefresh
+        binding.srlLappenjualan.setOnRefreshListener {
+            onRestart()
+            overridePendingTransition(0,1)
+        }
     }
 
     private fun getDataJual() {
@@ -68,5 +112,12 @@ class LaporanPenjualan : AppCompatActivity() {
 
         })
 
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        val intent = intent
+        finish()
+        startActivity(intent)
     }
 }

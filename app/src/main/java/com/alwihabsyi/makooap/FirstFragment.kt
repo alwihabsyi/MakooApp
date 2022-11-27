@@ -23,7 +23,7 @@ import com.google.firebase.database.*
 class FirstFragment : Fragment(R.layout.fragment_first) {
     lateinit var database: DatabaseReference
     lateinit var userArrayList: ArrayList<DatabaseStok>
-    lateinit var userArrayList2: ArrayList<DataJual>
+    lateinit var userArrayList2: ArrayList<DataLaporan>
     lateinit var list: ArrayList<PieEntry>
     lateinit var piechart: PieChart
 
@@ -33,7 +33,7 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
         //TV JUMLAH STOK START
         list = ArrayList()
         userArrayList = arrayListOf<DatabaseStok>()
-        userArrayList2 = arrayListOf<DataJual>()
+        userArrayList2 = arrayListOf<DataLaporan>()
         tvjumlahstok()
         tvjumlahterjual()
 
@@ -78,8 +78,7 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
 
         //swipe to refresh
         view.findViewById<SwipeRefreshLayout>(R.id.swiperefreshlayout).setOnRefreshListener {
-            val intent = Intent(this.context, MainActivity::class.java)
-            startActivity(intent)
+            onRestart()
             activity?.overridePendingTransition(0,1)
         }
 
@@ -87,32 +86,38 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
         piechart = view.findViewById(R.id.piechart_stok)
     }
 
+    fun onRestart(){
+        val intent = activity?.intent
+        activity?.finish()
+        startActivity(intent)
+    }
+
     private fun tvjumlahterjual() {
 
-        database = FirebaseDatabase.getInstance().getReference("Sale")
+        database = FirebaseDatabase.getInstance().getReference("Laporan")
         database.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     for(itemSnapshot in snapshot.children){
-                        val items = itemSnapshot.getValue(DataJual::class.java)
+                        val items = itemSnapshot.getValue(DataLaporan::class.java)
                         userArrayList2.add(items!!)
+                        view?.findViewById<TextView>(R.id.RP)?.text = items.jumlahbarang
+
+                        val conv = Integer.parseInt(items.jumlahbarang)
+                        val pie = conv.toFloat()
+                        list.add(PieEntry(pie,"Terjual"))
+
+                        val pieDataSet= PieDataSet(list, "")
+                        pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS, 255)
+                        pieDataSet.valueTextSize = 15f
+                        pieDataSet.valueTextColor = Color.BLACK
+
+                        val pieData = PieData(pieDataSet)
+                        piechart.data = pieData
+                        piechart.description.text = ""
+                        piechart.centerText = "Stok"
+                        piechart.animateY(2000)
                     }
-
-                    view?.findViewById<TextView>(R.id.RP)?.text = userArrayList2.size.toString()
-                    val pie = userArrayList2.size.toFloat()
-                    list.add(PieEntry(pie,"Terjual"))
-
-                    val pieDataSet= PieDataSet(list, "")
-                    pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS, 255)
-                    pieDataSet.valueTextSize = 15f
-                    pieDataSet.valueTextColor = Color.BLACK
-
-                    val pieData = PieData(pieDataSet)
-                    piechart.data = pieData
-                    piechart.description.text = "Pie Chart"
-                    piechart.centerText = "List"
-                    piechart.animateY(2000)
-
                 }
             }
 
@@ -137,7 +142,7 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
 
                     view?.findViewById<TextView>(R.id.jumlah)?.text = userArrayList.size.toString()
                     val pie = userArrayList.size.toFloat()
-                    list.add(PieEntry(pie,"Stok"))
+                    list.add(PieEntry(pie,"Jenis Barang"))
 
                     val pieDataSet= PieDataSet(list, "")
                     pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS, 255)
@@ -146,8 +151,8 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
 
                     val pieData = PieData(pieDataSet)
                     piechart.data = pieData
-                    piechart.description.text = "Pie Chart"
-                    piechart.centerText = "List"
+                    piechart.description.text = ""
+                    piechart.centerText = "Stok"
                     piechart.animateY(2000)
                 }
             }

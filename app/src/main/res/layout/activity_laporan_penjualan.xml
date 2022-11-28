@@ -59,19 +59,11 @@
                         android:textSize="70sp" />
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btn_addjual"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:background="@drawable/ic_tambah" />
-
-                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_clearallap"
                         android:layout_width="100dp"
                         android:layout_height="40dp"
                         android:layout_alignParentEnd="true"
-                        android:layout_alignParentBottom="true"
+                        android:layout_centerVertical="true"
                         android:paddingEnd="10dp"
                         android:text="Clear All"
                         android:textColor="#4A4A4A" />

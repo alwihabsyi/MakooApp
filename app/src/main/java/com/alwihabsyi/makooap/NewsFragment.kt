@@ -38,7 +38,6 @@ class NewsFragment : Fragment(R.layout.fragment_news) {
             }
         }
 
-
     private fun getNewsData(callback: (List<ArticlesItem>) -> Unit) {
         val apiservice = retrofitservice().create(APInews::class.java)
         apiservice.getNews().enqueue(object: Callback<Response> {

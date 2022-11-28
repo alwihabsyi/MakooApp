@@ -36,13 +36,6 @@ class SecondFragment : Fragment(R.layout.fragment_second) {
 
         //search view
         searchView = view.findViewById(R.id.search_view)
-
-        //swipe to refresh
-        view.findViewById<SwipeRefreshLayout>(R.id.srl_secondfragment).setOnRefreshListener {
-            val intent = Intent(this.context, SecondFragment::class.java)
-            startActivity(intent)
-            activity?.overridePendingTransition(0, 1)
-        }
     }
 
     private fun getListData() {

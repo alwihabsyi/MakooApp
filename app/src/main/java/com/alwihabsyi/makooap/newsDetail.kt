@@ -6,6 +6,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
+import androidx.fragment.app.Fragment
 import com.alwihabsyi.makooap.dataNews.ArticlesItem
 import com.alwihabsyi.makooap.databinding.ActivityNewsDetailBinding
 import com.squareup.picasso.Picasso

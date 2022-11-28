@@ -154,14 +154,38 @@ class AddJual : AppCompatActivity() {
                                                     Toast.LENGTH_SHORT
                                                 ).show()
                                             }
-                                        databaselaporan.child("total").setValue(total)
-                                            .addOnFailureListener {
-                                                Toast.makeText(
-                                                    this,
-                                                    "Gagal Menambah",
-                                                    Toast.LENGTH_SHORT
-                                                ).show()
+
+                                        //untuk laporan
+                                        databaselaporan.child("total").get().addOnSuccessListener {
+                                            if(it.exists()){
+                                                val jumlahlapor =
+                                                    Integer.parseInt(it.child("jumlahbarang").value.toString())
+                                                val hargabarang =
+                                                    Integer.parseInt(it.child("totalharga").value.toString())
+
+                                                val jumlahterlapor = ((jumlahlapor).plus(jumlah)).toString()
+                                                val hargabaranglapor = ((hargabarang).plus(hargap)).toString()
+                                                val totalfix = DataLaporan(jumlahterlapor, hargabaranglapor)
+
+                                                databaselaporan.child("total").setValue(totalfix)
+                                                    .addOnFailureListener {
+                                                        Toast.makeText(
+                                                            this,
+                                                            "Gagal Menambah",
+                                                            Toast.LENGTH_SHORT
+                                                        ).show()
+                                                    }
+                                            }else{
+                                                databaselaporan.child("total").setValue(total)
+                                                    .addOnFailureListener {
+                                                        Toast.makeText(
+                                                            this,
+                                                            "Gagal Menambah",
+                                                            Toast.LENGTH_SHORT
+                                                        ).show()
+                                                    }
                                             }
+                                        }
 
                                         //apabila barang - dari 1 maka dihapus
                                         if (jufix == 0) {

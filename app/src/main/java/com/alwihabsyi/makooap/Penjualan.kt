@@ -21,6 +21,7 @@ class Penjualan : AppCompatActivity() {
     private lateinit var userRecyclerView: RecyclerView
     private lateinit var userArrayList: ArrayList<DataJual>
     private lateinit var database: DatabaseReference
+    private lateinit var databaselaporan: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,6 +87,7 @@ class Penjualan : AppCompatActivity() {
 
     private fun getDataJual() {
 
+        databaselaporan = FirebaseDatabase.getInstance().getReference("Laporan")
         database = FirebaseDatabase.getInstance().getReference("Sale")
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -95,7 +97,20 @@ class Penjualan : AppCompatActivity() {
                         userArrayList.add(items!!)
                     }
                     userRecyclerView.adapter = JualAdapter(userArrayList)
-                    binding.tvAngkajual.text = userArrayList.size.toString()
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+        databaselaporan.addValueEventListener(object: ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    for(itemSnapshot in snapshot.children) {
+                        val items = itemSnapshot.getValue(DataLaporan::class.java)
+                        binding.tvAngkajual.text = items?.jumlahbarang
+                    }
                 }
             }
 

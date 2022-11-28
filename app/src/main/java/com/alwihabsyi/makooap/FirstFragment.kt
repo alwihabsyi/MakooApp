@@ -143,7 +143,7 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
 
                     view?.findViewById<TextView>(R.id.jumlah)?.text = userArrayList.size.toString()
                     val pie = userArrayList.size.toFloat()
-                    list.add(PieEntry(pie,"Jenis Barang"))
+                    list.add(PieEntry(pie,"Jenis"))
 
                     val pieDataSet= PieDataSet(list, "")
                     pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS, 255)

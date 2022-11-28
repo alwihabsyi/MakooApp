@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/menuic"
+    tools:context=".newsDetail">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_cover"
+                android:layout_width="match_parent"
+                android:layout_height="270dp"
+                android:foreground="@drawable/bg_newscover"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_newspaper" />
+
+            <RelativeLayout
+                android:id="@+id/rl_detdet"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/iv_cover"
+                android:layout_margin="15dp">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Lorem Ipsum Dolor Sit Amet"
+                    android:textSize="20sp" />
+
+                <ImageView
+                    android:id="@+id/ic_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_title"
+                    android:src="@drawable/ic_date" />
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_title"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_toRightOf="@+id/ic_date"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="2022-11-27T13:00:00Z" />
+
+                <ImageView
+                    android:id="@+id/ic_pub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_toRightOf="@id/tv_date"
+                    android:layout_below="@+id/tv_title"
+                    android:src="@drawable/ic_author" />
+
+                <TextView
+                    android:id="@+id/tv_author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_title"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_toRightOf="@+id/ic_pub"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Maryasari Rizky" />
+
+                <TextView
+                    android:id="@+id/tv_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ic_date"
+                    android:layout_marginTop="30dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="16sp"
+                    android:text="Jakarta, CNBC Indonesia - Konsumen di Amerika Serikat mencetak rekor belanja online di musim diskon Black Friday tahun ini. Pada pesta belanja yang berlangsung sehari setelah hari raya Thanksgiving t… [+2179 chars]" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_lihatlengkap"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:hint="Lihat Selengkapnya"
+        android:textColorHint="@color/menuic"
+        android:textSize="16sp"
+        android:background="@drawable/bg_btnnews"
+        android:layout_margin="20dp" />
+
+</RelativeLayout>

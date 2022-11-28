@@ -11,8 +11,17 @@
         android:label="fragment_first"
         tools:layout="@layout/fragment_first" >
         <action
-            android:id="@+id/action_first_fragment_to_second_fragment"
-            app:destination="@id/second_fragment" />
+            android:id="@+id/action_first_fragment_to_news_fragment"
+            app:destination="@id/news_fragment" />
+    </fragment>
+    <fragment
+    android:id="@+id/news_fragment"
+    android:name="com.alwihabsyi.makooap.NewsFragment"
+    android:label="fragment_news"
+    tools:layout="@layout/fragment_news" >
+    <action
+        android:id="@+id/action_news_fragment_to_second_fragment"
+        app:destination="@id/second_fragment" />
     </fragment>
     <fragment
         android:id="@+id/second_fragment"

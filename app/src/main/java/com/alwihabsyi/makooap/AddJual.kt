@@ -95,9 +95,16 @@ class AddJual : AppCompatActivity() {
                                                 Toast.LENGTH_SHORT
                                             ).show()
                                         }
-                                    if (jufix == 0) {
+                                    if (jufixitem == 0) {
                                         databaseitem.child(idjual).removeValue()
-                                            .addOnFailureListener {
+                                            .addOnSuccessListener {
+                                                Toast.makeText(
+                                                    this,
+                                                    "Berhasil Menambah",
+                                                    Toast.LENGTH_SHORT
+                                                )
+                                                    .show()
+                                            }.addOnFailureListener {
                                                 Toast.makeText(this, "Gagal", Toast.LENGTH_SHORT)
                                                     .show()
                                             }
@@ -131,80 +138,107 @@ class AddJual : AppCompatActivity() {
                                             DataJual(id, namabarang, jumlahbarangjual, hargabarang)
                                         val total = DataLaporan(jumlahbarangjual, hargabaranglapor)
 
-                                        databasesale.child(id).setValue(sale).addOnSuccessListener {
-                                            binding.etIdjual.text.clear()
-                                            binding.etJumlahterjual.text.clear()
-                                            Toast.makeText(
-                                                this,
-                                                "Berhasil Menambah",
-                                                Toast.LENGTH_SHORT
-                                            ).show()
-                                        }.addOnFailureListener {
-                                            Toast.makeText(
-                                                this,
-                                                "Gagal Menambah",
-                                                Toast.LENGTH_SHORT
-                                            ).show()
-                                        }
-                                        databaseitem.child(id).setValue(items)
-                                            .addOnFailureListener {
+                                        if (jufix > 0) {
+                                            databasesale.child(id).setValue(sale)
+                                                .addOnSuccessListener {
+                                                    binding.etIdjual.text.clear()
+                                                    binding.etJumlahterjual.text.clear()
+                                                    Toast.makeText(
+                                                        this,
+                                                        "Berhasil Menambah",
+                                                        Toast.LENGTH_SHORT
+                                                    ).show()
+                                                }.addOnFailureListener {
                                                 Toast.makeText(
                                                     this,
                                                     "Gagal Menambah",
                                                     Toast.LENGTH_SHORT
                                                 ).show()
                                             }
-
-                                        //untuk laporan
-                                        databaselaporan.child("total").get().addOnSuccessListener {
-                                            if(it.exists()){
-                                                val jumlahlapor =
-                                                    Integer.parseInt(it.child("jumlahbarang").value.toString())
-                                                val hargabarang =
-                                                    Integer.parseInt(it.child("totalharga").value.toString())
-
-                                                val jumlahterlapor = ((jumlahlapor).plus(jumlah)).toString()
-                                                val hargabaranglapor = ((hargabarang).plus(hargap)).toString()
-                                                val totalfix = DataLaporan(jumlahterlapor, hargabaranglapor)
-
-                                                databaselaporan.child("total").setValue(totalfix)
-                                                    .addOnFailureListener {
-                                                        Toast.makeText(
-                                                            this,
-                                                            "Gagal Menambah",
-                                                            Toast.LENGTH_SHORT
-                                                        ).show()
-                                                    }
-                                            }else{
-                                                databaselaporan.child("total").setValue(total)
-                                                    .addOnFailureListener {
-                                                        Toast.makeText(
-                                                            this,
-                                                            "Gagal Menambah",
-                                                            Toast.LENGTH_SHORT
-                                                        ).show()
-                                                    }
-                                            }
-                                        }
-
-                                        //apabila barang - dari 1 maka dihapus
-                                        if (jufix == 0) {
-                                            databasesale.child(id).removeValue()
+                                            databaseitem.child(id).setValue(items)
                                                 .addOnFailureListener {
+                                                    Toast.makeText(
+                                                        this,
+                                                        "Gagal Menambah",
+                                                        Toast.LENGTH_SHORT
+                                                    ).show()
+                                                }
+
+                                            //untuk laporan
+                                            databaselaporan.child("total").get()
+                                                .addOnSuccessListener {
+                                                    if (it.exists()) {
+                                                        val jumlahlapor =
+                                                            Integer.parseInt(it.child("jumlahbarang").value.toString())
+                                                        val hargabarang =
+                                                            Integer.parseInt(it.child("totalharga").value.toString())
+
+                                                        val jumlahterlapor =
+                                                            ((jumlahlapor).plus(jumlah)).toString()
+                                                        val hargabaranglapor =
+                                                            ((hargabarang).plus(hargap)).toString()
+                                                        val totalfix = DataLaporan(
+                                                            jumlahterlapor,
+                                                            hargabaranglapor
+                                                        )
+
+                                                        databaselaporan.child("total")
+                                                            .setValue(totalfix)
+                                                            .addOnFailureListener {
+                                                                Toast.makeText(
+                                                                    this,
+                                                                    "Gagal Menambah",
+                                                                    Toast.LENGTH_SHORT
+                                                                ).show()
+                                                            }
+                                                    } else {
+                                                        databaselaporan.child("total")
+                                                            .setValue(total)
+                                                            .addOnFailureListener {
+                                                                Toast.makeText(
+                                                                    this,
+                                                                    "Gagal Menambah",
+                                                                    Toast.LENGTH_SHORT
+                                                                ).show()
+                                                            }
+                                                    }
+                                                }
+                                        } else if (jufix == 0) {
+                                            databasesale.child(id).removeValue()
+                                                .addOnSuccessListener {
+                                                    Toast.makeText(
+                                                        this,
+                                                        "Berhasil Menambah",
+                                                        Toast.LENGTH_SHORT
+                                                    )
+                                                        .show()
+                                                }.addOnFailureListener {
                                                     Toast.makeText(
                                                         this,
                                                         "Gagal",
                                                         Toast.LENGTH_SHORT
-                                                    ).show()
+                                                    )
+                                                        .show()
                                                 }
                                             databaseitem.child(id).removeValue()
-                                                .addOnFailureListener {
+                                                .addOnSuccessListener {
+                                                    Toast.makeText(
+                                                        this,
+                                                        "Berhasil Menambah",
+                                                        Toast.LENGTH_SHORT
+                                                    )
+                                                        .show()
+                                                }.addOnFailureListener {
                                                     Toast.makeText(
                                                         this,
                                                         "Gagal",
                                                         Toast.LENGTH_SHORT
-                                                    ).show()
+                                                    )
+                                                        .show()
                                                 }
+                                        } else if (jufix < 0) {
+                                            Toast.makeText(this, "Input Salah", Toast.LENGTH_SHORT)
+                                                .show()
                                         }
                                     }
                                 }

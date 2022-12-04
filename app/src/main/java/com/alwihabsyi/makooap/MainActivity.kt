@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var userArrayList: ArrayList<DatabaseStok>
     private lateinit var userArrayList2: ArrayList<DataLaporan>
     private lateinit var list: ArrayList<PieEntry>
-    private lateinit var piechart: PieChart
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,7 +38,6 @@ class MainActivity : AppCompatActivity() {
         list = ArrayList()
         userArrayList = arrayListOf<DatabaseStok>()
         userArrayList2 = arrayListOf<DataLaporan>()
-        piechart = findViewById(R.id.piechart_stok)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         navController = navHostFragment.navController
@@ -55,8 +53,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onRestart() {
         super.onRestart()
-        tvjumlahstok()
-        tvjumlahterjual()
     }
 
     private fun tvjumlahterjual() {
@@ -69,21 +65,6 @@ class MainActivity : AppCompatActivity() {
                         val items = itemSnapshot.getValue(DataLaporan::class.java)
                         userArrayList2.add(items!!)
                         findViewById<TextView>(R.id.RP)?.text = items.jumlahbarang
-
-                        val conv = Integer.parseInt(items.jumlahbarang)
-                        val pie = conv.toFloat()
-                        list.add(PieEntry(pie,"Terjual"))
-
-                        val pieDataSet= PieDataSet(list, "")
-                        pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS, 255)
-                        pieDataSet.valueTextSize = 15f
-                        pieDataSet.valueTextColor = Color.BLACK
-
-                        val pieData = PieData(pieDataSet)
-                        piechart.data = pieData
-                        piechart.description.text = ""
-                        piechart.centerText = "Stok"
-                        piechart.animateY(2000)
                     }
                 }
             }
@@ -106,21 +87,7 @@ class MainActivity : AppCompatActivity() {
                         val items = itemSnapshot.getValue(DatabaseStok::class.java)
                         userArrayList.add(items!!)
                     }
-
                     findViewById<TextView>(R.id.jumlah)?.text = userArrayList.size.toString()
-                    val pie = userArrayList.size.toFloat()
-                    list.add(PieEntry(pie,"Jenis"))
-
-                    val pieDataSet= PieDataSet(list, "")
-                    pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS, 255)
-                    pieDataSet.valueTextSize = 15f
-                    pieDataSet.valueTextColor = Color.BLACK
-
-                    val pieData = PieData(pieDataSet)
-                    piechart.data = pieData
-                    piechart.description.text = ""
-                    piechart.centerText = "Stok"
-                    piechart.animateY(2000)
                 }
             }
 

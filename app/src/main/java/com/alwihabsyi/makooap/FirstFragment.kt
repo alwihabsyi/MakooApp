@@ -78,9 +78,16 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
         }
 
         //swipe to refresh
-        view.findViewById<SwipeRefreshLayout>(R.id.swiperefreshlayout).setOnRefreshListener {
+        val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swiperefreshlayout)
+        swipeRefreshLayout.setOnRefreshListener {
+            userArrayList.clear()
+            userArrayList2.clear()
+            list.clear()
+            view.findViewById<TextView>(R.id.RP)?.text = "0"
+            view.findViewById<TextView>(R.id.jumlah)?.text = "0"
             tvjumlahterjual()
             tvjumlahstok()
+            swipeRefreshLayout.isRefreshing = false
         }
 
         //PieChart Stok
@@ -97,6 +104,7 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
                         val items = itemSnapshot.getValue(DataLaporan::class.java)
                         userArrayList2.add(items!!)
                         view?.findViewById<TextView>(R.id.RP)?.text = items.jumlahbarang
+                        list.clear()
 
                         val conv = Integer.parseInt(items.jumlahbarang)
                         val pie = conv.toFloat()
@@ -133,22 +141,22 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
                     for(itemSnapshot in snapshot.children){
                         val items = itemSnapshot.getValue(DatabaseStok::class.java)
                         userArrayList.add(items!!)
+                        view?.findViewById<TextView>(R.id.jumlah)?.text = userArrayList.size.toString()
+
+                        val pie = userArrayList.size.toFloat()
+                        list.add(PieEntry(pie,"Jenis"))
+
+                        val pieDataSet= PieDataSet(list, "")
+                        pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS, 255)
+                        pieDataSet.valueTextSize = 15f
+                        pieDataSet.valueTextColor = Color.BLACK
+
+                        val pieData = PieData(pieDataSet)
+                        piechart.data = pieData
+                        piechart.description.text = ""
+                        piechart.centerText = "Stok"
+                        piechart.animateY(2000)
                     }
-
-                    view?.findViewById<TextView>(R.id.jumlah)?.text = userArrayList.size.toString()
-                    val pie = userArrayList.size.toFloat()
-                    list.add(PieEntry(pie,"Jenis"))
-
-                    val pieDataSet= PieDataSet(list, "")
-                    pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS, 255)
-                    pieDataSet.valueTextSize = 15f
-                    pieDataSet.valueTextColor = Color.BLACK
-
-                    val pieData = PieData(pieDataSet)
-                    piechart.data = pieData
-                    piechart.description.text = ""
-                    piechart.centerText = "Stok"
-                    piechart.animateY(2000)
                 }
             }
 

@@ -1,5 +1,6 @@
 package com.alwihabsyi.makooap
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract.Data
@@ -46,6 +47,11 @@ class AddStock : AppCompatActivity() {
             }else {
                 Toast.makeText(this, "Semua Field Harus Diisi", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        binding.klikup.setOnClickListener {
+            val intent = Intent(this@AddStock, DeleteStock::class.java)
+            startActivity(intent)
         }
     }
 }

@@ -82,7 +82,7 @@
                     android:textColor="#FFFFFF" />
 
                 <TextView
-                    android:id="@+id/klikup"
+                    android:id="@+id/kliktam"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"

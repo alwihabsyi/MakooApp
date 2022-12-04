@@ -79,18 +79,12 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
 
         //swipe to refresh
         view.findViewById<SwipeRefreshLayout>(R.id.swiperefreshlayout).setOnRefreshListener {
-            onRestart()
-            activity?.overridePendingTransition(0,1)
+            tvjumlahterjual()
+            tvjumlahstok()
         }
 
         //PieChart Stok
         piechart = view.findViewById(R.id.piechart_stok)
-    }
-
-    fun onRestart(){
-        val intent = activity?.intent
-        activity?.finish()
-        startActivity(intent)
     }
 
     private fun tvjumlahterjual() {

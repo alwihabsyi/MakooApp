@@ -45,28 +45,28 @@
                 android:textSize="23sp"
                 android:text="List Barang"/>
 
-            <com.google.android.material.imageview.ShapeableImageView
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/ic_del"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_below="@+id/cv_search"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="25dp"
                 android:layout_marginEnd="25dp"
                 android:layout_marginBottom="25dp"
-                android:src="@drawable/ic_delete" />
+                android:background="@drawable/ic_delete" />
 
-            <com.google.android.material.imageview.ShapeableImageView
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/ic_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_below="@+id/cv_search"
                 android:layout_toLeftOf="@+id/ic_del"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="25dp"
                 android:layout_marginBottom="25dp"
-                android:src="@drawable/ic_edit" />
+                android:background="@drawable/ic_edit" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"

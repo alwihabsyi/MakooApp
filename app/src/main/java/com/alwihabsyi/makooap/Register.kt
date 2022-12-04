@@ -4,35 +4,29 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
-import com.alwihabsyi.makooap.databinding.ActivityAuthBinding
+import com.alwihabsyi.makooap.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class AuthActivity : AppCompatActivity() {
+class Register : AppCompatActivity() {
 
+    private lateinit var binding: ActivityRegisterBinding
     private lateinit var auth: FirebaseAuth
-    private lateinit var binding: ActivityAuthBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAuthBinding.inflate(layoutInflater)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         auth = Firebase.auth
 
-        binding.tvSignup.setOnClickListener {
-            val intent = Intent(this, Register::class.java)
-            startActivity(intent)
-        }
-        binding.btnSignin.setOnClickListener {
-            startSigningIn()
+        binding.btnSignup.setOnClickListener {
+            startSigningUp()
         }
     }
 
-    private fun startSigningIn() {
+    private fun startSigningUp() {
         val email = binding.etEmail.text
         val password = binding.etPassword.text
 
@@ -44,14 +38,15 @@ class AuthActivity : AppCompatActivity() {
             return
         }
 
-        auth.signInWithEmailAndPassword(emInput,pwInput)
+        auth.createUserWithEmailAndPassword(emInput, pwInput)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    Toast.makeText(this, "Berhasil Masuk", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Berhasil Mendaftar", Toast.LENGTH_SHORT).show()
+
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                 } else {
-                    Toast.makeText(this, "Gagal Masuk", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Gagal Mendaftar", Toast.LENGTH_SHORT).show()
                 }
             }.addOnFailureListener {
                 Toast.makeText(this, "Terjadi Error ${it.localizedMessage}", Toast.LENGTH_SHORT)

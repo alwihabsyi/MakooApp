@@ -7,11 +7,14 @@ import android.widget.Toast
 import com.alwihabsyi.makooap.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 
 class Register : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
+    private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,9 +32,11 @@ class Register : AppCompatActivity() {
     private fun startSigningUp() {
         val email = binding.etEmail.text
         val password = binding.etPassword.text
+        val uname = binding.etUname.text
 
         val emInput = email.toString()
         val pwInput = password.toString()
+        val user = uname.toString()
 
         if(email.isEmpty() || password.isEmpty()){
             Toast.makeText(this, "Harap Isi Semua Field", Toast.LENGTH_SHORT).show()
@@ -42,6 +47,10 @@ class Register : AppCompatActivity() {
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     Toast.makeText(this, "Berhasil Mendaftar", Toast.LENGTH_SHORT).show()
+                    database = FirebaseDatabase.getInstance().getReference("User")
+                    val uid = auth.currentUser?.uid
+                    val datauser = DataUser(uid,emInput,user)
+                    database.child(uid!!).setValue(datauser)
 
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
@@ -54,3 +63,9 @@ class Register : AppCompatActivity() {
             }
     }
 }
+
+data class DataUser(
+    val id: String? = null,
+    val em : String? = null,
+    val uname: String? = null
+)

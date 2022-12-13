@@ -16,15 +16,16 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+    lateinit var auth: FirebaseAuth
     private lateinit var database: DatabaseReference
-    private lateinit var userArrayList: ArrayList<DatabaseStok>
-    private lateinit var userArrayList2: ArrayList<DataLaporan>
+    private lateinit var userArrayList: ArrayList<DataUser>
     private lateinit var list: ArrayList<PieEntry>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,8 +37,7 @@ class MainActivity : AppCompatActivity() {
 
 
         list = ArrayList()
-        userArrayList = arrayListOf<DatabaseStok>()
-        userArrayList2 = arrayListOf<DataLaporan>()
+        userArrayList = arrayListOf<DataUser>()
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         navController = navHostFragment.navController
@@ -53,48 +53,5 @@ class MainActivity : AppCompatActivity() {
 
     override fun onRestart() {
         super.onRestart()
-    }
-
-    private fun tvjumlahterjual() {
-
-        database = FirebaseDatabase.getInstance().getReference("Laporan")
-        database.addValueEventListener(object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    for(itemSnapshot in snapshot.children){
-                        val items = itemSnapshot.getValue(DataLaporan::class.java)
-                        userArrayList2.add(items!!)
-                        findViewById<TextView>(R.id.RP)?.text = items.jumlahbarang
-                    }
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-
-        })
-
-    }
-
-    private fun tvjumlahstok() {
-
-        database = FirebaseDatabase.getInstance().getReference("Items")
-        database.addValueEventListener(object: ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    for(itemSnapshot in snapshot.children){
-                        val items = itemSnapshot.getValue(DatabaseStok::class.java)
-                        userArrayList.add(items!!)
-                    }
-                    findViewById<TextView>(R.id.jumlah)?.text = userArrayList.size.toString()
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-
-        })
     }
 }

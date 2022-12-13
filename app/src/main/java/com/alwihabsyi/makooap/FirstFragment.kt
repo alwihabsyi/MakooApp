@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
@@ -18,21 +19,29 @@ import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.*
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
+import com.google.firebase.ktx.Firebase
 
 class FirstFragment : Fragment(R.layout.fragment_first) {
 
     lateinit var database: DatabaseReference
+    lateinit var auth: FirebaseAuth
     lateinit var userArrayList: ArrayList<DatabaseStok>
     lateinit var userArrayList2: ArrayList<DataLaporan>
+    lateinit var UAL: ArrayList<DataUser>
     lateinit var list: ArrayList<PieEntry>
     lateinit var piechart: PieChart
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        auth = Firebase.auth
+        //PROFILLL
+        profname()
         //TV JUMLAH STOK START
         list = ArrayList()
+        UAL = arrayListOf<DataUser>()
         userArrayList = arrayListOf<DatabaseStok>()
         userArrayList2 = arrayListOf<DataLaporan>()
         tvjumlahstok()
@@ -80,18 +89,37 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
         //swipe to refresh
         val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.swiperefreshlayout)
         swipeRefreshLayout.setOnRefreshListener {
-            userArrayList.clear()
-            userArrayList2.clear()
-            list.clear()
-            view.findViewById<TextView>(R.id.RP)?.text = "0"
-            view.findViewById<TextView>(R.id.jumlah)?.text = "0"
-            tvjumlahterjual()
-            tvjumlahstok()
+            refresh()
             swipeRefreshLayout.isRefreshing = false
         }
 
         //PieChart Stok
         piechart = view.findViewById(R.id.piechart_stok)
+    }
+
+    private fun refresh() {
+        userArrayList.clear()
+        userArrayList2.clear()
+        list.clear()
+        view?.findViewById<TextView>(R.id.RP)?.text = "0"
+        view?.findViewById<TextView>(R.id.jumlah)?.text = "0"
+        tvjumlahterjual()
+        tvjumlahstok()
+    }
+
+    private fun profname() {
+        val currentUser = auth.currentUser
+        if(currentUser != null){
+            database = FirebaseDatabase.getInstance().getReference("User")
+            database.child(auth.currentUser!!.uid).get().addOnSuccessListener {
+                if(it.exists()){
+                    val tvuser = it.child("uname").value.toString()
+                    view?.findViewById<TextView>(R.id.profname)?.text = tvuser
+                }
+            }
+        }else{
+            view?.findViewById<TextView>(R.id.profname)?.text = "null"
+        }
     }
 
     private fun tvjumlahterjual() {

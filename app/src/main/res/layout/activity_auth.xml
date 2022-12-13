@@ -107,6 +107,7 @@
                     android:id="@+id/et_password"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:maxLength="20"
                     android:inputType="textPassword"
                     android:paddingTop="20dp" />
 
@@ -115,7 +116,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cv_signin"
                 android:layout_width="160dp"
-                android:layout_height="35dp"
+                android:layout_height="40dp"
                 android:layout_below="@id/tl_pw"
                 android:layout_centerHorizontal="true"
                 android:layout_marginStart="15dp"

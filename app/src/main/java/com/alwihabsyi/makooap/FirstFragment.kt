@@ -1,5 +1,6 @@
 package com.alwihabsyi.makooap
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -23,6 +24,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
+import javax.inject.Inject
+
+@Inject
+lateinit var chartStyle: BarStyle
 
 class FirstFragment : Fragment(R.layout.fragment_first) {
 
@@ -31,8 +36,8 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
     lateinit var userArrayList: ArrayList<DatabaseStok>
     lateinit var userArrayList2: ArrayList<DataLaporan>
     lateinit var UAL: ArrayList<DataUser>
-    lateinit var list: ArrayList<PieEntry>
-    lateinit var piechart: PieChart
+    lateinit var list: ArrayList<BarEntry>
+    lateinit var barChart: BarChart
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,6 +45,7 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
         //PROFILLL
         profname()
         //TV JUMLAH STOK START
+        chartStyle = BarStyle(requireContext())
         list = ArrayList()
         UAL = arrayListOf<DataUser>()
         userArrayList = arrayListOf<DatabaseStok>()
@@ -93,7 +99,8 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
         }
 
         //PieChart Stok
-        piechart = view.findViewById(R.id.piechart_stok)
+        barChart = view.findViewById(R.id.barchart_stok)
+        chartStyle.styleChart(barChart)
     }
 
     private fun refresh() {
@@ -135,18 +142,16 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
 
                         val conv = Integer.parseInt(items.jumlahbarang)
                         val pie = conv.toFloat()
-                        list.add(PieEntry(pie,"Terjual"))
+                        list.add(BarEntry(1f, pie))
 
-                        val pieDataSet= PieDataSet(list, "")
-                        pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS, 255)
-                        pieDataSet.valueTextSize = 15f
-                        pieDataSet.valueTextColor = Color.BLACK
+                        val barDataSet= BarDataSet(list, "Jumlah Terjual")
+                        barDataSet.setColors(ColorTemplate.MATERIAL_COLORS, 255)
+                        barDataSet.valueTextSize = 15f
+                        barDataSet.valueTextColor = Color.BLACK
 
-                        val pieData = PieData(pieDataSet)
-                        piechart.data = pieData
-                        piechart.description.text = ""
-                        piechart.centerText = "Stok"
-                        piechart.animateY(2000)
+                        val barData = BarData(barDataSet)
+                        barChart.data = barData
+                        barChart.animateY(2000)
                     }
                 }
             }
@@ -170,19 +175,17 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
                         userArrayList.add(items!!)
                         view?.findViewById<TextView>(R.id.jumlah)?.text = userArrayList.size.toString()
 
-                        val pie = userArrayList.size.toFloat()
-                        list.add(PieEntry(pie,"Jenis"))
+                        val bar = userArrayList.size.toFloat()
+                        list.add(BarEntry(3f,bar))
 
-                        val pieDataSet= PieDataSet(list, "")
+                        val pieDataSet= BarDataSet(list, "Jumlah Terjual, Jenis Barang")
                         pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS, 255)
                         pieDataSet.valueTextSize = 15f
                         pieDataSet.valueTextColor = Color.BLACK
 
-                        val pieData = PieData(pieDataSet)
-                        piechart.data = pieData
-                        piechart.description.text = ""
-                        piechart.centerText = "Stok"
-                        piechart.animateY(2000)
+                        val pieData = BarData(pieDataSet)
+                        barChart.data = pieData
+                        barChart.animateY(2000)
                     }
                 }
             }

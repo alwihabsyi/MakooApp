@@ -50,8 +50,4 @@ class MainActivity : AppCompatActivity() {
         val menu = popupMenu.menu
         binding.bottomNavigationView.setupWithNavController(menu, navController)
     }
-
-    override fun onRestart() {
-        super.onRestart()
-    }
 }

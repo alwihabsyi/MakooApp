@@ -44,8 +44,7 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
         UAL = arrayListOf<DataUser>()
         userArrayList = arrayListOf<DatabaseStok>()
         userArrayList2 = arrayListOf<DataLaporan>()
-        tvjumlahstok()
-        tvjumlahterjual()
+        refresh()
 
 
         //TV JUMLAH STOK END

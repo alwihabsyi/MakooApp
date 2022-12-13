@@ -27,6 +27,10 @@ class Register : AppCompatActivity() {
         binding.btnSignup.setOnClickListener {
             startSigningUp()
         }
+        binding.tvSignin.setOnClickListener {
+            val intent = Intent(this, AuthActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun startSigningUp() {
@@ -46,13 +50,16 @@ class Register : AppCompatActivity() {
         auth.createUserWithEmailAndPassword(emInput, pwInput)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    Toast.makeText(this, "Berhasil Mendaftar", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Berhasil Mendaftar, Silahkan Login", Toast.LENGTH_SHORT).show()
+
+                    //add user data to firebase
                     database = FirebaseDatabase.getInstance().getReference("User")
                     val uid = auth.currentUser?.uid
                     val datauser = DataUser(uid,emInput,user)
                     database.child(uid!!).setValue(datauser)
 
-                    val intent = Intent(this, MainActivity::class.java)
+                    //intent to login page
+                    val intent = Intent(this, AuthActivity::class.java)
                     startActivity(intent)
                 } else {
                     Toast.makeText(this, "Gagal Mendaftar", Toast.LENGTH_SHORT).show()

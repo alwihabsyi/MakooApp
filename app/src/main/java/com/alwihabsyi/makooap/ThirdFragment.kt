@@ -23,7 +23,6 @@ class ThirdFragment : Fragment(R.layout.fragment_third) {
         view.findViewById<TextView>(R.id.tv_logout).apply {
             setOnClickListener {
                 auth.signOut()
-                startActivity(Intent(context, AuthActivity::class.java))
                 activity?.finish()
             }
         }

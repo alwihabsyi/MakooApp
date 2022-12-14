@@ -54,7 +54,7 @@ class AuthActivity : AppCompatActivity() {
                     Toast.makeText(this, "Gagal Masuk", Toast.LENGTH_SHORT).show()
                 }
             }.addOnFailureListener {
-                Toast.makeText(this, "Terjadi Error ${it.localizedMessage}", Toast.LENGTH_SHORT)
+                Toast.makeText(this, "${it.localizedMessage}", Toast.LENGTH_SHORT)
                     .show()
             }
     }

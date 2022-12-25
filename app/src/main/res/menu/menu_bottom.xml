@@ -10,7 +10,7 @@
         android:id="@+id/news_fragment"
         android:contentDescription="@string/app_name"
         android:icon="@drawable/ic_newspaper"
-        android:title="News" />
+        android:title="Supplier" />
     <item
         android:id="@+id/second_fragment"
         android:contentDescription="@string/app_name"

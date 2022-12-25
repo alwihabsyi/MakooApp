@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B3D3D3D3"
+    tools:context=".StockActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_totalstok"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="3dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_menustok1" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="Daftar Supplier"
+                    android:textColor="@color/menuic"
+                    android:textSize="20sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/instok"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/ic_tambah" />
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ic_delsup"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/cv_totalstok"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="25dp"
+            android:background="@drawable/ic_deletesupp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/ic_updsup"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/cv_totalstok"
+            android:layout_toLeftOf="@+id/ic_delsup"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/ic_editsupp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            app:cardCornerRadius="20dp"
+            android:layout_below="@+id/ic_updsup">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:background="@color/menuic"
+                android:layout_height="wrap_content">
+
+                <TableRow
+                    android:background="#0DC0DF">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="ID"
+                        android:textColor="@color/menuic"
+                        android:padding="10dp"
+                        android:textSize="14sp"
+                        android:layout_weight="2"
+                        android:gravity="center_horizontal"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Supplier"
+                        android:textColor="@color/menuic"
+                        android:padding="10dp"
+                        android:textSize="14sp"
+                        android:layout_weight="5"
+                        android:gravity="center_horizontal"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Jumlah Barang"
+                        android:textColor="@color/menuic"
+                        android:padding="10dp"
+                        android:textSize="14sp"
+                        android:layout_weight="4"
+                        android:gravity="center_horizontal"/>
+
+                </TableRow>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_stoklist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/adapter_stoklv"/>
+
+            </TableLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+</ScrollView>

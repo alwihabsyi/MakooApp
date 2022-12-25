@@ -15,6 +15,7 @@ class AddStock : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddStockBinding
     private lateinit var database: DatabaseReference
+    private lateinit var database2: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,19 +27,22 @@ class AddStock : AppCompatActivity() {
             val nabar = binding.etNamabarang.text
             val jubar = binding.etJumlah.text
             val habar = binding.etHarga.text
+            val idsup = binding.etIdsupp.text
             val id = binding.etId.text.toString()
             val namabarang = binding.etNamabarang.text.toString()
             val jumlahbarang = binding.etJumlah.text.toString()
+            val idsupplier = binding.etIdsupp.text.toString()
             val hargabarang = binding.etHarga.text.toString()
 
-            if(aidi.isNotEmpty() && nabar.isNotEmpty() && jubar.isNotEmpty() && habar.isNotEmpty()){
+            if(aidi.isNotEmpty() && nabar.isNotEmpty() && jubar.isNotEmpty() && habar.isNotEmpty() && idsup.isNotEmpty()){
                 database = FirebaseDatabase.getInstance().getReference("Items")
-                val items = DatabaseStok(id,namabarang, jumlahbarang,hargabarang)
+                val items = DatabaseStok(id,namabarang, jumlahbarang,hargabarang, idsupplier)
                 database.child(id).setValue(items).addOnSuccessListener {
                     binding.etId.text.clear()
                     binding.etNamabarang.text.clear()
                     binding.etJumlah.text.clear()
                     binding.etHarga.text.clear()
+                    binding.etIdsupp.text.clear()
 
                     Toast.makeText(this, "Berhasil Tersimpan", Toast.LENGTH_SHORT).show()
                 }.addOnFailureListener {

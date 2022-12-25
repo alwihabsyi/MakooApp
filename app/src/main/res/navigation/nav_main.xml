@@ -16,9 +16,9 @@
     </fragment>
     <fragment
     android:id="@+id/news_fragment"
-    android:name="com.alwihabsyi.makooap.NewsFragment"
+    android:name="com.alwihabsyi.makooap.SupplierFragment"
     android:label="fragment_news"
-    tools:layout="@layout/fragment_news" >
+    tools:layout="@layout/fragment_supplier" >
     <action
         android:id="@+id/action_news_fragment_to_second_fragment"
         app:destination="@id/second_fragment" />

@@ -13,6 +13,13 @@
         android:theme="@style/Theme.MakooApp"
         tools:targetApi="31">
         <activity
+            android:name=".AddSupplier"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Register"
             android:exported="false"
             android:theme="@style/Theme.MakooApp.NoActionBarAndStatusBar">
@@ -33,14 +40,6 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".newsDetail"
-            android:exported="false"
-            android:theme="@style/Theme.MakooApp.NoActionBarAndStatusBar">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -96,8 +95,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:theme="@style/Theme.MakooApp.NoActionBarAndStatusBar">
-        </activity>
+            android:theme="@style/Theme.MakooApp.NoActionBarAndStatusBar"></activity>
     </application>
 
 </manifest>

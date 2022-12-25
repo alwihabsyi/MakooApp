@@ -11,3 +11,9 @@ data class DataLaporan(
     val jumlahbarang: String? = null,
     val totalharga: String? = null
 )
+
+data class DataSupplier(
+    val idsupp: String? = null,
+    val namasupp: String? = null,
+    val jumlahbrgsup: String? = null
+)

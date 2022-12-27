@@ -174,6 +174,7 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
                         val items = itemSnapshot.getValue(DatabaseStok::class.java)
                         userArrayList.add(items!!)
                         view?.findViewById<TextView>(R.id.jumlah)?.text = userArrayList.size.toString()
+                        list.clear()
 
                         val bar = userArrayList.size.toFloat()
                         list.add(BarEntry(3f,bar))

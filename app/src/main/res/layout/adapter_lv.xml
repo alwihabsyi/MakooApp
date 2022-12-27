@@ -49,6 +49,16 @@
             android:text="Harga"
             android:textSize="14sp" />
 
+        <TextView
+            android:id="@+id/idsuppst"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="ID Supp"
+            android:textSize="14sp" />
+
     </TableRow>
 
 </TableLayout>

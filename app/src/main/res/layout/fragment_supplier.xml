@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#B3D3D3D3"
-    tools:context=".StockActivity">
+    tools:context=".SupplierFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -42,7 +42,7 @@
                     android:textSize="20sp" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/instok"
+                    android:id="@+id/insupp"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_alignParentEnd="true"
@@ -71,12 +71,13 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_below="@+id/cv_totalstok"
-            android:layout_toLeftOf="@+id/ic_delsup"
+            android:layout_toStartOf="@+id/ic_delsup"
             android:layout_marginStart="25dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/ic_editsupp" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cv_supp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="5dp"
@@ -127,7 +128,7 @@
                 </TableRow>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_stoklist"
+                    android:id="@+id/rv_supplierslist"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     tools:listitem="@layout/adapter_stoklv"/>

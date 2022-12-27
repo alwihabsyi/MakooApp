@@ -15,5 +15,8 @@ data class DataLaporan(
 data class DataSupplier(
     val idsupp: String? = null,
     val namasupp: String? = null,
-    val jumlahbrgsup: String? = null
+    val jenisbrg: String? = null,
+    val alamat: String? = null,
+    val notelp: String? = null,
+    val jumlahbrg: String? = null
 )

@@ -35,18 +35,35 @@ class AddStock : AppCompatActivity() {
             val hargabarang = binding.etHarga.text.toString()
 
             if(aidi.isNotEmpty() && nabar.isNotEmpty() && jubar.isNotEmpty() && habar.isNotEmpty() && idsup.isNotEmpty()){
+                database2 = FirebaseDatabase.getInstance().getReference("Supplier")
                 database = FirebaseDatabase.getInstance().getReference("Items")
-                val items = DatabaseStok(id,namabarang, jumlahbarang,hargabarang, idsupplier)
-                database.child(id).setValue(items).addOnSuccessListener {
-                    binding.etId.text.clear()
-                    binding.etNamabarang.text.clear()
-                    binding.etJumlah.text.clear()
-                    binding.etHarga.text.clear()
-                    binding.etIdsupp.text.clear()
+                database2.child(idsupplier).get().addOnSuccessListener {
+                    if(it.exists()){
+                        val namasupp = it.child("namasupp").value.toString()
+                        val jenisbrg = it.child("jenisbrg").value.toString()
+                        val alamat = it.child("alamat").value.toString()
+                        val notelp = it.child("notelp").value.toString()
 
-                    Toast.makeText(this, "Berhasil Tersimpan", Toast.LENGTH_SHORT).show()
-                }.addOnFailureListener {
-                    Toast.makeText(this, "Gagal Menyimpan", Toast.LENGTH_SHORT).show()
+                        val supplier = DataSupplier(idsupplier, namasupp, jenisbrg, alamat, notelp, jumlahbarang)
+                        database2.child(idsupplier).setValue(supplier).addOnFailureListener {
+                            Toast.makeText(this, "Gagal Update Data Supplier", Toast.LENGTH_SHORT).show()
+                        }
+
+                        val items = DatabaseStok(id,namabarang, jumlahbarang,hargabarang, idsupplier)
+                        database.child(id).setValue(items).addOnSuccessListener {
+                            binding.etId.text.clear()
+                            binding.etNamabarang.text.clear()
+                            binding.etJumlah.text.clear()
+                            binding.etHarga.text.clear()
+                            binding.etIdsupp.text.clear()
+
+                            Toast.makeText(this, "Berhasil Tersimpan", Toast.LENGTH_SHORT).show()
+                        }.addOnFailureListener {
+                            Toast.makeText(this, "Gagal Menyimpan", Toast.LENGTH_SHORT).show()
+                        }
+                    }else{
+                        Toast.makeText(this, "Supplier Tidak Terdaftar",Toast.LENGTH_SHORT).show()
+                    }
                 }
             }else {
                 Toast.makeText(this, "Semua Field Harus Diisi", Toast.LENGTH_SHORT).show()

@@ -8,10 +8,6 @@
     android:padding="20dp"
     tools:context=".AddStock">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <TextView
             android:id="@+id/tv_addstock"
             android:layout_width="wrap_content"
@@ -27,9 +23,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="100dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="15dp"
             android:layout_marginBottom="40dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="5dp">
@@ -190,7 +186,6 @@
                         android:id="@+id/et_idsupp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="number"
                         android:maxLength="4"
                         android:paddingTop="20dp" />
 
@@ -200,7 +195,7 @@
                     android:id="@+id/btn_savenewstock"
                     android:layout_width="150dp"
                     android:layout_height="48dp"
-                    android:layout_below="@id/tl_jumlah"
+                    android:layout_below="@id/tl_idsupp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="30dp"
                     android:background="@drawable/bg_btn"
@@ -213,7 +208,7 @@
                     android:id="@+id/upinstead"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_above="@id/klikup"
+                    android:layout_below="@id/btn_savenewstock"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="5dp"
                     android:gravity="center"
@@ -223,7 +218,7 @@
                     android:id="@+id/klikup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
+                    android:layout_below="@+id/upinstead"
                     android:layout_centerHorizontal="true"
                     android:text="Kurangi Barang"
                     android:textColor="#03A9F4" />
@@ -231,7 +226,5 @@
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
-
-    </RelativeLayout>
 
 </RelativeLayout>

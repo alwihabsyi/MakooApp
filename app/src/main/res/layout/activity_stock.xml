@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B3D3D3D3"
+    android:background="@drawable/begron"
     tools:context=".StockActivity">
 
     <RelativeLayout
@@ -74,7 +74,6 @@
 
             <TableLayout
                 android:layout_width="match_parent"
-                android:background="@color/menuic"
                 android:layout_height="wrap_content">
 
                 <TableRow

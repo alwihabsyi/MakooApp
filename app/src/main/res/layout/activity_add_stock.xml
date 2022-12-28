@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B3D3D3D3"
-    android:padding="20dp"
+    android:background="@drawable/begron"
     tools:context=".AddStock">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:padding="20dp"
+        android:layout_height="match_parent">
+
 
         <TextView
             android:id="@+id/tv_addstock"
@@ -14,18 +19,20 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
+            android:textColor="@color/menuic"
             android:fontFamily="@font/poppins_medium"
             android:padding="5dp"
-            android:text="Add Stock"
-            android:textSize="30sp" />
+            android:text="Tambah Stok"
+            android:textSize="25sp" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="50dp"
             android:layout_marginEnd="15dp"
+            android:backgroundTint="#1A2033"
             android:layout_marginBottom="40dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="5dp">
@@ -42,6 +49,7 @@
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="ID Barang"
+                    android:textColor="@color/menuic"
                     android:textSize="18sp" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -71,6 +79,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tl_id"
                     android:layout_marginTop="15dp"
+                    android:textColor="@color/menuic"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Nama Barang"
                     android:textSize="18sp" />
@@ -102,6 +111,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tl_nama"
                     android:layout_marginTop="15dp"
+                    android:textColor="@color/menuic"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Harga Barang"
                     android:textSize="18sp" />
@@ -132,6 +142,7 @@
                     android:id="@+id/jumlahstok"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/menuic"
                     android:layout_below="@+id/tl_harga"
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/poppins_medium"
@@ -165,6 +176,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tl_jumlah"
+                    android:textColor="@color/menuic"
                     android:layout_marginTop="15dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="ID Supplier"
@@ -211,6 +223,7 @@
                     android:layout_below="@id/btn_savenewstock"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="5dp"
+                    android:textColor="@color/menuic"
                     android:gravity="center"
                     android:text="Untuk update barang, cukup masukkan ID yang sama" />
 
@@ -227,4 +240,7 @@
 
         </androidx.cardview.widget.CardView>
 
-</RelativeLayout>
+
+    </RelativeLayout>
+
+</ScrollView>

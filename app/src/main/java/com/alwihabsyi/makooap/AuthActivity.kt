@@ -19,7 +19,7 @@ class AuthActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
 
         auth = Firebase.auth
 
@@ -54,7 +54,7 @@ class AuthActivity : AppCompatActivity() {
                     Toast.makeText(this, "Gagal Masuk", Toast.LENGTH_SHORT).show()
                 }
             }.addOnFailureListener {
-                Toast.makeText(this, "${it.localizedMessage}", Toast.LENGTH_SHORT)
+                Toast.makeText(this, it.localizedMessage, Toast.LENGTH_SHORT)
                     .show()
             }
     }

@@ -1,153 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/srl_penjualan"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B3D3D3D3"
-    tools:context=".StockActivity">
+    android:background="@drawable/begron"
+    tools:context=".Penjualan">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <RelativeLayout
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_totalstok"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="10dp">
+            android:layout_height="400dp"
+            android:layout_margin="10dp"
+            android:layout_centerInParent="true"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="3dp">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cv_totalstok"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_margin="10dp"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="3dp">
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/bg_menujual" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="130dp"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp">
-
-                    <TextView
-                        android:id="@+id/Totalstok"
-                        android:layout_width="wrap_content"
-                        android:layout_height="30dp"
-                        android:layout_marginStart="5dp"
-                        android:fontFamily="@font/galyon_regular"
-                        android:text="Barang Terjual"
-                        android:textColor="@color/menuic"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/tv_angkajual"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="5dp"
-                        android:fontFamily="@font/galyon_bold"
-                        android:text="0"
-                        android:textColor="@color/menuic"
-                        android:textSize="70sp" />
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btn_addjual"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:background="@drawable/ic_tambah" />
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btn_clearall"
-                        android:layout_width="100dp"
-                        android:layout_height="40dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentBottom="true"
-                        android:paddingEnd="10dp"
-                        android:text="Clear All"
-                        android:textColor="#4A4A4A" />
-
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/cv_totalstok"
-                android:layout_margin="10dp"
-                app:cardCornerRadius="20dp">
+                android:scaleType="fitXY"
+                android:src="@drawable/bg_menujual" />
 
-                <TableLayout
-                    android:layout_width="match_parent"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:id="@+id/Totalstok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/galyon_regular"
+                    android:text="Barang Terjual"
+                    android:textColor="@color/menuic"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/tv_angkajual"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@color/menuic">
+                    android:layout_marginStart="5dp"
+                    android:layout_below="@id/Totalstok"
+                    android:fontFamily="@font/galyon_bold"
+                    android:text="0"
+                    android:textColor="@color/menuic"
+                    android:textSize="70sp" />
 
-                    <TableRow android:background="#6851F8">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_addjual"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/ic_tambah" />
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:gravity="center_horizontal"
-                            android:padding="10dp"
-                            android:text="ID"
-                            android:textColor="@color/menuic"
-                            android:textSize="14sp" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_clearall"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/ic_dellete"/>
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="5"
-                            android:gravity="center_horizontal"
-                            android:padding="10dp"
-                            android:text="Nama Barang"
-                            android:textColor="@color/menuic"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="3"
-                            android:gravity="center_horizontal"
-                            android:padding="10dp"
-                            android:text="Jumlah"
-                            android:textColor="@color/menuic"
-                            android:textSize="14sp" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="3.5"
-                            android:gravity="center_horizontal"
-                            android:padding="10dp"
-                            android:text="Harga"
-                            android:textColor="@color/menuic"
-                            android:textSize="14sp" />
-
-                    </TableRow>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="250dp"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/tv_angkajual"
+                    app:cardCornerRadius="20dp">
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_listjual"
+                        android:id="@+id/rv_mini"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        tools:listitem="@layout/adapter_lv" />
+                        android:layout_height="match_parent"
+                        android:padding="5dp"
+                        tools:listitem="@layout/adapter_jualkecil"/>
 
-                </TableLayout>
+                </androidx.cardview.widget.CardView>
 
-            </androidx.cardview.widget.CardView>
+            </RelativeLayout>
 
-        </RelativeLayout>
+        </androidx.cardview.widget.CardView>
 
-    </ScrollView>
-
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</RelativeLayout>

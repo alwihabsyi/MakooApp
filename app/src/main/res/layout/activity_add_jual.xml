@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B3D3D3D3"
+    android:background="@drawable/begron"
     android:padding="20dp"
     tools:context=".AddStock">
 
@@ -18,18 +18,20 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
+            android:textColor="@color/menuic"
             android:fontFamily="@font/poppins_medium"
             android:padding="5dp"
-            android:text="Add Jual"
-            android:textSize="30sp" />
+            android:text="Tambah Transaksi"
+            android:textSize="25sp" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="5dp"
+            android:layout_marginStart="15dp"
+            android:backgroundTint="#1A2033"
             android:layout_marginTop="100dp"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="15dp"
             android:layout_marginBottom="70dp"
             app:cardCornerRadius="20dp"
             app:cardElevation="5dp">
@@ -44,6 +46,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:textColor="@color/menuic"
                     android:fontFamily="@font/poppins_medium"
                     android:text="ID Barang"
                     android:textSize="18sp" />
@@ -75,6 +78,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tl_id"
                     android:layout_marginTop="15dp"
+                    android:textColor="@color/menuic"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Jumlah Terjual"
                     android:textSize="18sp" />
@@ -110,7 +114,7 @@
                     android:layout_marginTop="30dp"
                     android:background="@drawable/bg_btnjual"
                     android:elevation="5dp"
-                    android:text="Tambah Penjualan"
+                    android:text="Tambah Transaksi"
                     android:textAllCaps="false"
                     android:textColor="#FFFFFF" />
 

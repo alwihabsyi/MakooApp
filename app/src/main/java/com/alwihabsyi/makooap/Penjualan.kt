@@ -29,7 +29,7 @@ class Penjualan : AppCompatActivity() {
         setContentView(binding.root)
 
         //RV JUAL START
-        userRecyclerView = findViewById(R.id.rv_listjual)
+        userRecyclerView = findViewById(R.id.rv_mini)
         userRecyclerView.layoutManager = LinearLayoutManager(this)
         userRecyclerView.setHasFixedSize(true)
 
@@ -73,11 +73,6 @@ class Penjualan : AppCompatActivity() {
             val intent = Intent(this@Penjualan, AddJual::class.java)
             startActivity(intent)
         }
-
-        //swiperefresh
-        binding.srlPenjualan.setOnRefreshListener {
-            Refresh()
-        }
     }
 
     private fun Refresh(){
@@ -96,7 +91,7 @@ class Penjualan : AppCompatActivity() {
                         val items = itemSnapshot.getValue(DataJual::class.java)
                         userArrayList.add(items!!)
                     }
-                    userRecyclerView.adapter = JualAdapter(userArrayList)
+                    userRecyclerView.adapter = MiniAdapter(userArrayList)
                 }
             }
 

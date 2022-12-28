@@ -5,8 +5,8 @@
     android:id="@+id/srl_lappenjualan"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B3D3D3D3"
-    tools:context=".StockActivity">
+    android:background="@drawable/begron"
+    tools:context=".LaporanPenjualan">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -60,13 +60,52 @@
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btn_clearallap"
-                        android:layout_width="100dp"
-                        android:layout_height="40dp"
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
                         android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:paddingEnd="10dp"
-                        android:text="Clear All"
-                        android:textColor="#4A4A4A" />
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/ic_dellete"/>
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_barchart"
+                android:layout_width="match_parent"
+                android:layout_height="370dp"
+                android:layout_below="@+id/cv_rview"
+                android:layout_margin="10dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="3dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Berdasarkan Bulan"
+                        android:layout_marginTop="3dp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:textSize="12sp"
+                        android:layout_toStartOf="@id/spinner"/>
+
+                    <Spinner
+                        android:id="@+id/spinner"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"/>
+
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/barchart_laporan"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/spinner"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp" />
 
                 </RelativeLayout>
 
@@ -76,14 +115,13 @@
                 android:id="@+id/cv_rview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/cv_totalstok"
+                android:layout_below="@+id/cv_totalharga"
                 android:layout_margin="10dp"
                 app:cardCornerRadius="20dp">
 
                 <TableLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/menuic">
+                    android:layout_height="wrap_content">
 
                     <TableRow android:background="#DC8B11">
 
@@ -127,6 +165,17 @@
                             android:textColor="@color/menuic"
                             android:textSize="14sp" />
 
+                        <TextView
+                            android:id="@+id/idsuppst"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="3"
+                            android:gravity="center_horizontal"
+                            android:padding="10dp"
+                            android:text="ID Supp"
+                            android:textColor="@color/menuic"
+                            android:textSize="14sp" />
+
                     </TableRow>
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -143,7 +192,7 @@
                 android:id="@+id/cv_totalharga"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_below="@id/cv_rview"
+                android:layout_below="@id/cv_totalstok"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
@@ -170,7 +219,7 @@
                             android:id="@+id/tvtotalrp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TOTAL: Rp."
+                            android:text="Pendapatan: Rp."
                             android:textColor="@color/menuic" />
 
                         <TextView

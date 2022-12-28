@@ -10,7 +10,7 @@ class BarStyle @Inject constructor(private val context: Context) {
     fun styleChart(barChart: BarChart) = barChart.apply {
         axisRight.isEnabled = false
         axisLeft.apply {
-            isEnabled = false
+            isEnabled = true
             axisMinimum = 0f
         }
 
@@ -22,10 +22,9 @@ class BarStyle @Inject constructor(private val context: Context) {
             position = XAxis.XAxisPosition.BOTTOM
         }
 
+
         setTouchEnabled(true)
         isDragEnabled = true
-        setScaleEnabled(false)
-        setPinchZoom(false)
 
         description = null
     }

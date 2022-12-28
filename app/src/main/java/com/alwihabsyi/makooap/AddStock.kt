@@ -4,12 +4,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract.Data
+import android.renderscript.Sampler.Value
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import com.alwihabsyi.makooap.databinding.ActivityAddStockBinding
 import com.alwihabsyi.makooap.databinding.ActivityMainBinding
 import com.alwihabsyi.makooap.databinding.ActivityStockBinding
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 class AddStock : AppCompatActivity() {
 
@@ -21,6 +24,30 @@ class AddStock : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddStockBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        database = FirebaseDatabase.getInstance().getReference("Items")
+
+        database.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()){
+                    for (itemSnapshot in snapshot.children){
+                        val items = itemSnapshot.getValue(DatabaseStok::class.java)
+                        binding.etId.addTextChangedListener{
+                            if(binding.etId.text.toString() == items?.id.toString()){
+                                binding.etNamabarang.setText("${items?.namabarang}")
+                                binding.etHarga.setText("${items?.hargabarang}")
+                                binding.etJumlah.setText("${items?.jumlahbarang}")
+                                binding.etIdsupp.setText("${items?.idsupp}")
+                            }
+                        }
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
 
         binding.btnSavenewstock.setOnClickListener {
             val aidi = binding.etId.text
@@ -34,38 +61,125 @@ class AddStock : AppCompatActivity() {
             val idsupplier = binding.etIdsupp.text.toString()
             val hargabarang = binding.etHarga.text.toString()
 
-            if(aidi.isNotEmpty() && nabar.isNotEmpty() && jubar.isNotEmpty() && habar.isNotEmpty() && idsup.isNotEmpty()){
+            if (aidi.isNotEmpty() && nabar.isNotEmpty() && jubar.isNotEmpty() && habar.isNotEmpty() && idsup.isNotEmpty()) {
                 database2 = FirebaseDatabase.getInstance().getReference("Supplier")
                 database = FirebaseDatabase.getInstance().getReference("Items")
-                database2.child(idsupplier).get().addOnSuccessListener {
-                    if(it.exists()){
-                        val namasupp = it.child("namasupp").value.toString()
-                        val jenisbrg = it.child("jenisbrg").value.toString()
-                        val alamat = it.child("alamat").value.toString()
-                        val notelp = it.child("notelp").value.toString()
+                database.child(id).get().addOnSuccessListener {
+                    if (it.exists()) {
+                        val jumlahbrang =
+                            Integer.parseInt(it.child("jumlahbarang").value.toString())
+                        database2.child(idsupplier).get().addOnSuccessListener {
+                            if (it.exists()) {
+                                val namasupp = it.child("namasupp").value.toString()
+                                val jenisbrg = it.child("jenisbrg").value.toString()
+                                val alamat = it.child("alamat").value.toString()
+                                val notelp = it.child("notelp").value.toString()
+                                val idsupp = it.child("idsupp").value.toString()
+                                val jumlahsup =
+                                    Integer.parseInt(it.child("jumlahbrg").value.toString())
 
-                        val supplier = DataSupplier(idsupplier, namasupp, jenisbrg, alamat, notelp, jumlahbarang)
-                        database2.child(idsupplier).setValue(supplier).addOnFailureListener {
-                            Toast.makeText(this, "Gagal Update Data Supplier", Toast.LENGTH_SHORT).show()
+                                val jufix = jumlahsup - jumlahbrang + Integer.parseInt(jumlahbarang)
+
+                                val supplier = DataSupplier(
+                                    idsupplier,
+                                    namasupp,
+                                    jenisbrg,
+                                    alamat,
+                                    notelp,
+                                    jufix.toString()
+                                )
+                                database2.child(idsupplier).setValue(supplier)
+                                    .addOnFailureListener {
+                                        Toast.makeText(
+                                            this,
+                                            "Gagal Update Data Supplier",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+
+                                val items = DatabaseStok(
+                                    id,
+                                    namabarang,
+                                    jumlahbarang,
+                                    hargabarang,
+                                    idsupplier
+                                )
+                                database.child(id).setValue(items).addOnSuccessListener {
+                                    binding.etId.text.clear()
+                                    binding.etNamabarang.text.clear()
+                                    binding.etJumlah.text.clear()
+                                    binding.etHarga.text.clear()
+                                    binding.etIdsupp.text.clear()
+
+                                    Toast.makeText(this, "Berhasil Tersimpan", Toast.LENGTH_SHORT)
+                                        .show()
+                                }.addOnFailureListener {
+                                    Toast.makeText(this, "Gagal Menyimpan", Toast.LENGTH_SHORT)
+                                        .show()
+                                }
+                            } else {
+                                Toast.makeText(this, "Supplier Tidak Terdaftar", Toast.LENGTH_SHORT)
+                                    .show()
+                            }
                         }
+                    } else {
+                        database2.child(idsupplier).get().addOnSuccessListener {
+                            if (it.exists()) {
+                                val namasupp = it.child("namasupp").value.toString()
+                                val jenisbrg = it.child("jenisbrg").value.toString()
+                                val alamat = it.child("alamat").value.toString()
+                                val notelp = it.child("notelp").value.toString()
+                                val idsupp = it.child("idsupp").value.toString()
+                                val jumlahsup =
+                                    Integer.parseInt(it.child("jumlahbrg").value.toString())
 
-                        val items = DatabaseStok(id,namabarang, jumlahbarang,hargabarang, idsupplier)
-                        database.child(id).setValue(items).addOnSuccessListener {
-                            binding.etId.text.clear()
-                            binding.etNamabarang.text.clear()
-                            binding.etJumlah.text.clear()
-                            binding.etHarga.text.clear()
-                            binding.etIdsupp.text.clear()
+                                val jufix = jumlahsup + Integer.parseInt(jumlahbarang)
 
-                            Toast.makeText(this, "Berhasil Tersimpan", Toast.LENGTH_SHORT).show()
-                        }.addOnFailureListener {
-                            Toast.makeText(this, "Gagal Menyimpan", Toast.LENGTH_SHORT).show()
+                                val supplier = DataSupplier(
+                                    idsupplier,
+                                    namasupp,
+                                    jenisbrg,
+                                    alamat,
+                                    notelp,
+                                    jufix.toString()
+                                )
+                                database2.child(idsupplier).setValue(supplier)
+                                    .addOnFailureListener {
+                                        Toast.makeText(
+                                            this,
+                                            "Gagal Update Data Supplier",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+
+                                val items = DatabaseStok(
+                                    id,
+                                    namabarang,
+                                    jumlahbarang,
+                                    hargabarang,
+                                    idsupplier
+                                )
+                                database.child(id).setValue(items).addOnSuccessListener {
+                                    binding.etId.text.clear()
+                                    binding.etNamabarang.text.clear()
+                                    binding.etJumlah.text.clear()
+                                    binding.etHarga.text.clear()
+                                    binding.etIdsupp.text.clear()
+
+                                    Toast.makeText(this, "Berhasil Tersimpan", Toast.LENGTH_SHORT)
+                                        .show()
+                                }.addOnFailureListener {
+                                    Toast.makeText(this, "Gagal Menyimpan", Toast.LENGTH_SHORT)
+                                        .show()
+                                }
+                            } else {
+                                Toast.makeText(this, "Supplier Tidak Terdaftar", Toast.LENGTH_SHORT)
+                                    .show()
+                            }
                         }
-                    }else{
-                        Toast.makeText(this, "Supplier Tidak Terdaftar",Toast.LENGTH_SHORT).show()
                     }
                 }
-            }else {
+            } else {
                 Toast.makeText(this, "Semua Field Harus Diisi", Toast.LENGTH_SHORT).show()
             }
         }

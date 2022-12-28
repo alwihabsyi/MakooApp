@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:id="@+id/srl_secondfragment"
     android:layout_height="match_parent"
+    android:background="@drawable/begron"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".SecondFragment">
 
@@ -27,9 +28,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:iconifiedByDefault="false"
-                    android:queryHint="Search Here"
-                    android:queryBackground="@color/menuic"
-                    android:background="@color/menuic"/>
+                    android:queryHint="Search Here"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -81,7 +80,6 @@
 
                 <TableLayout
                     android:layout_width="match_parent"
-                    android:background="@color/menuic"
                     android:layout_height="wrap_content">
 
                     <TableRow

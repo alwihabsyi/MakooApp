@@ -5,8 +5,10 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.firebase.database.*
 
 class SupplierFragment : Fragment(R.layout.fragment_supplier) {
@@ -30,6 +32,18 @@ class SupplierFragment : Fragment(R.layout.fragment_supplier) {
         suppArrayList = arrayListOf<DataSupplier>()
         getSupplierData()
 
+        val swipeRefreshLayout = view.findViewById<SwipeRefreshLayout>(R.id.srl_supp)
+        swipeRefreshLayout.setOnRefreshListener {
+            refresh()
+            swipeRefreshLayout.isRefreshing = false
+        }
+
+    }
+
+    private fun refresh() {
+        suppArrayList.clear()
+        getSupplierData()
+//        tvjumlahsupplier()
     }
 
     private fun getSupplierData(){
@@ -43,7 +57,10 @@ class SupplierFragment : Fragment(R.layout.fragment_supplier) {
                         suppArrayList.add(items!!)
                     }
                     userRecyclerView.adapter = SuppAdapter(suppArrayList) {
-
+                        Intent(view?.context, SupplierDetail::class.java).apply {
+                            putExtra("user", it)
+                            startActivity(this)
+                        }
                     }
                 }
             }

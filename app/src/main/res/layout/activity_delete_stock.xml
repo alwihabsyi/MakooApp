@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#B3D3D3D3"
+    android:background="@drawable/begron"
     android:padding="20dp"
     tools:context=".AddStock">
 
@@ -21,12 +21,13 @@
             android:fontFamily="@font/poppins_medium"
             android:padding="5dp"
             android:text="Delete Stock"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
+            android:backgroundTint="#1A2033"
             android:layout_marginStart="5dp"
             android:layout_marginTop="100dp"
             android:layout_marginEnd="5dp"

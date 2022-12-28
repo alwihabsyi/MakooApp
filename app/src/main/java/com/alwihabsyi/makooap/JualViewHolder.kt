@@ -10,12 +10,14 @@ class JualViewHolder(itemview: View): RecyclerView.ViewHolder(itemview) {
     val namabarang = itemview.findViewById<TextView>(R.id.tv_namabarang)
     val jumlahbarang = itemview.findViewById<TextView>(R.id.tv_jumlahbarang)
     val hargajual = itemview.findViewById<TextView>(R.id.tv_hargabarang)
+    val idsupp = itemview.findViewById<TextView>(R.id.idsuppst)
 
     fun onBindView(data: DataJual) {
         nomor.text= data.idjual
         namabarang.text = data.barangjual
         jumlahbarang.text = data.jumlahbarangjual
         hargajual.text = data.hargabarangjual
+        idsupp.text = data.idsupp
     }
 
 }

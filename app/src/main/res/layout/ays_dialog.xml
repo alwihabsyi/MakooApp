@@ -9,6 +9,7 @@
         android:layout_height="180dp"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
+        android:backgroundTint="#1A2033"
         app:cardCornerRadius="20dp"
         app:cardElevation="5dp">
 

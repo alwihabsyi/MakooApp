@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_lsblue"
+    android:background="@drawable/begron"
     tools:context=".AuthActivity">
 
     <ImageView
@@ -22,6 +22,7 @@
         android:layout_below="@+id/signinlogo"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
+        android:backgroundTint="#1A2033"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="50dp"
         app:cardCornerRadius="25dp"

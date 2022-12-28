@@ -1,15 +1,225 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/begron"
     tools:context=".ThirdFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/tv_logout"
+    <RelativeLayout
+        android:id="@+id/rlawal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="50dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profsupp"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:src="@drawable/img_prof" />
+
+        <TextView
+            android:id="@+id/namasupp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/profsupp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Admin"
+            android:textColor="@color/menuic"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/jenisbrg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/namasupp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="-6dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Toko Karomah"
+            android:textColor="#D9B3B3B3"
+            android:textSize="13sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="LOGOUT" />
+        android:layout_below="@id/rlawal"
+        android:paddingStart="50dp"
+        android:paddingEnd="50dp"
+        android:paddingTop="40dp"
+        android:paddingBottom="40dp">
 
-</FrameLayout>
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/icsetting"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/setprof"
+            android:src="@drawable/ic_settings"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_toRightOf="@id/icsetting"
+            app:cardElevation="0dp"
+            android:backgroundTint="#00000000">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="@color/menuic"
+                    android:text="Profil" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/setarrow"
+                    android:src="@drawable/ic_arrowright"/>
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/icprof"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/icsetting"
+            android:background="@drawable/setfaq"
+            android:src="@drawable/ic_question"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/icsetting"
+            android:layout_toRightOf="@id/icprof"
+            app:cardElevation="0dp"
+            android:backgroundTint="#00000000">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="@color/menuic"
+                    android:text="Bantuan" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/setarrow"
+                    android:src="@drawable/ic_arrowright"/>
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/icsec"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/icprof"
+            android:background="@drawable/setsec"
+            android:src="@drawable/ic_locq"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/icprof"
+            android:layout_toRightOf="@id/icprof"
+            app:cardElevation="0dp"
+            android:backgroundTint="#00000000">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:textSize="20sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="@color/menuic"
+                    android:text="Keamanan" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/setarrow"
+                    android:src="@drawable/ic_arrowright"/>
+
+            </RelativeLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvlogout"
+            android:layout_width="120dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="55dp"
+            app:cardCornerRadius="10dp"
+            android:layout_below="@id/icsec">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/tv_logout"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/ic_logout"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/menuic"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Log Out"
+                    android:layout_toRightOf="@id/tv_logout"/>
+
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

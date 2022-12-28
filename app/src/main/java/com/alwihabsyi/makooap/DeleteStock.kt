@@ -17,6 +17,7 @@ class DeleteStock : AppCompatActivity() {
 
     private lateinit var binding: ActivityDeleteStockBinding
     private lateinit var database: DatabaseReference
+    private lateinit var databasesup: DatabaseReference
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,8 +39,29 @@ class DeleteStock : AppCompatActivity() {
                 val yesbtn = dialogBinding.findViewById<Button>(R.id.btn_yes)
                 yesbtn.setOnClickListener {
                     database = FirebaseDatabase.getInstance().getReference("Items")
+                    databasesup = FirebaseDatabase.getInstance().getReference("Supplier")
                     database.child(id).get().addOnSuccessListener {
                         if(it.exists()){
+                            val jumlah = Integer.parseInt(it.child("jumlahbarang").value.toString())
+                            val idsup = it.child("idsupp").value.toString()
+
+                            databasesup.child(idsup).get().addOnSuccessListener {
+                                val alamat = it.child("alamat").value.toString()
+                                val jenis = it.child("jenisbrg").value.toString()
+                                val nama = it.child("namasupp").value.toString()
+                                val notelp = it.child("notelp").value.toString()
+                                val jumlahsup = Integer.parseInt(it.child("jumlahbrg").value.toString())
+
+                                val jumupdate = jumlahsup - jumlah
+
+                                val supplier = DataSupplier(idsup, nama, jenis, alamat, notelp, jumupdate.toString())
+                                databasesup.child(idsup).setValue(supplier).addOnFailureListener {
+                                    Toast.makeText(this, "Gagal Update Data Supplier", Toast.LENGTH_SHORT).show()
+                                }
+
+
+                            }
+
                             database.child(id).removeValue().addOnSuccessListener {
                                 binding.etId.text.clear()
                                 Toast.makeText(this, "Berhasil Menghapus", Toast.LENGTH_SHORT).show()

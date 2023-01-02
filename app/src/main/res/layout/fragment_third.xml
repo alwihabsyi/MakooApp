@@ -83,51 +83,7 @@
                     android:text="Profil" />
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentEnd="true"
-                    android:background="@drawable/setarrow"
-                    android:src="@drawable/ic_arrowright"/>
-
-            </RelativeLayout>
-
-
-        </androidx.cardview.widget.CardView>
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/icprof"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="20dp"
-            android:layout_below="@+id/icsetting"
-            android:background="@drawable/setfaq"
-            android:src="@drawable/ic_question"/>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_below="@id/icsetting"
-            android:layout_toRightOf="@id/icprof"
-            app:cardElevation="0dp"
-            android:backgroundTint="#00000000">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginStart="20dp"
-                    android:textSize="20sp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:textColor="@color/menuic"
-                    android:text="Bantuan" />
-
-                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/btnprof"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_centerVertical="true"
@@ -145,7 +101,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_marginTop="20dp"
-            android:layout_below="@+id/icprof"
+            android:layout_below="@+id/icsetting"
             android:background="@drawable/setsec"
             android:src="@drawable/ic_locq"/>
 
@@ -153,8 +109,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="20dp"
-            android:layout_below="@id/icprof"
-            android:layout_toRightOf="@id/icprof"
+            android:layout_below="@id/icsetting"
+            android:layout_toRightOf="@id/icsec"
             app:cardElevation="0dp"
             android:backgroundTint="#00000000">
 

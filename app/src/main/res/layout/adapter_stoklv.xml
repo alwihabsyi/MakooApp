@@ -50,31 +50,9 @@
 
     </TableRow>
 
-    <TextView
-        android:id="@+id/tv_alamat"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Jumlah Barang"
-        android:padding="10dp"
-        android:textSize="0sp"
-        android:gravity="center_horizontal"/>
-
-    <TextView
-        android:id="@+id/tv_notelp"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Jumlah Barang"
-        android:padding="10dp"
-        android:textSize="0sp"
-        android:gravity="center_horizontal"/>
-
-    <TextView
-        android:id="@+id/tv_jenis"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Jumlah Barang"
-        android:padding="10dp"
-        android:textSize="0sp"
-        android:gravity="center_horizontal"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/menuic"/>
 
 </TableLayout>

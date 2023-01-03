@@ -24,6 +24,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
+import com.squareup.picasso.Picasso
 import javax.inject.Inject
 
 @Inject
@@ -124,6 +125,17 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
                 if(it.exists()){
                     val tvuser = it.child("uname").value.toString()
                     view?.findViewById<TextView>(R.id.profname)?.text = tvuser
+                }
+            }
+            val profil = view?.findViewById<ImageView>(R.id.profpic)
+            val datalink = FirebaseDatabase.getInstance().getReference("userImages")
+            datalink.child(auth.currentUser!!.uid).get().addOnSuccessListener {
+                if(it.exists()){
+                    val url = it.child("url").value.toString()
+                    Picasso
+                        .get()
+                        .load(url)
+                        .into(profil)
                 }
             }
         }else{

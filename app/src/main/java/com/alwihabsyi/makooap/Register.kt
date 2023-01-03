@@ -67,7 +67,7 @@ class Register : AppCompatActivity() {
                     Toast.makeText(this, "Gagal Mendaftar", Toast.LENGTH_SHORT).show()
                 }
             }.addOnFailureListener {
-                Toast.makeText(this, "${it.localizedMessage}", Toast.LENGTH_SHORT)
+                Toast.makeText(this, it.localizedMessage, Toast.LENGTH_SHORT)
                     .show()
             }
     }

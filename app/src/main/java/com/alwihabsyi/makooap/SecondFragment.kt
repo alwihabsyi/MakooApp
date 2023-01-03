@@ -37,18 +37,6 @@ class SecondFragment : Fragment(R.layout.fragment_second) {
 
         //search view
         searchView = view.findViewById(R.id.search_view)
-
-        //intents
-        val btnupdate = view.findViewById<Button>(R.id.ic_edit)
-        val btndelete = view.findViewById<Button>(R.id.ic_del)
-        btnupdate.setOnClickListener {
-            val intent = Intent(view.context, AddStock::class.java)
-            startActivity(intent)
-        }
-        btndelete.setOnClickListener {
-            val intent = Intent(view.context, DeleteStock::class.java)
-            startActivity(intent)
-        }
     }
 
     private fun getListData() {

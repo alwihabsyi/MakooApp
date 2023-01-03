@@ -65,7 +65,7 @@
         app:cardCornerRadius="15dp">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_signup"
+            android:id="@+id/btn_update"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#00000000"

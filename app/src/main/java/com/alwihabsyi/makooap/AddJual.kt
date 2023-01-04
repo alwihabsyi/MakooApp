@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.alwihabsyi.makooap.databinding.ActivityAddJualBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 
 class AddJual : AppCompatActivity() {
 
@@ -14,11 +16,13 @@ class AddJual : AppCompatActivity() {
     private lateinit var databasesale: DatabaseReference
     private lateinit var databaselaporan: DatabaseReference
     private lateinit var databasesupplier: DatabaseReference
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddJualBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        auth = FirebaseAuth.getInstance()
 
         binding.btnAddpenjualan.setOnClickListener {
             val aidi = binding.etIdjual.text
@@ -28,10 +32,10 @@ class AddJual : AppCompatActivity() {
 
             if (aidi.isNotEmpty() && jujual.isNotEmpty()) {
                 //reference database
-                databasesale = FirebaseDatabase.getInstance().getReference("Sale")
-                databaseitem = FirebaseDatabase.getInstance().getReference("Items")
-                databaselaporan = FirebaseDatabase.getInstance().getReference("Laporan")
-                databasesupplier = FirebaseDatabase.getInstance().getReference("Supplier")
+                databasesale = FirebaseDatabase.getInstance().getReference("${auth.currentUser?.uid}+Sale")
+                databaseitem = FirebaseDatabase.getInstance().getReference("${auth.currentUser?.uid}+Items")
+                databaselaporan = FirebaseDatabase.getInstance().getReference("${auth.currentUser?.uid}+Laporan")
+                databasesupplier = FirebaseDatabase.getInstance().getReference("${auth.currentUser?.uid}+Supplier")
                 val jumlah = Integer.parseInt(jumlahbarangjual)
 
                 //get data barang dari Items

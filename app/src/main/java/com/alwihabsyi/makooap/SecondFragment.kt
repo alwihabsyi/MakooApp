@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.alwihabsyi.makooap.databinding.FragmentSecondBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -21,9 +22,11 @@ class SecondFragment : Fragment(R.layout.fragment_second) {
     private lateinit var userArrayList: ArrayList<DatabaseStok>
     private lateinit var tempArrayList: ArrayList<DatabaseStok>
     private lateinit var database: DatabaseReference
+    private lateinit var auth: FirebaseAuth
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        auth = FirebaseAuth.getInstance()
 
         //RV STOK START
         userRecyclerView = view.findViewById(R.id.rv_listsearch)
@@ -41,7 +44,7 @@ class SecondFragment : Fragment(R.layout.fragment_second) {
 
     private fun getListData() {
 
-        database = FirebaseDatabase.getInstance().getReference("Items")
+        database = FirebaseDatabase.getInstance().getReference("${auth.currentUser?.uid}+Items")
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {

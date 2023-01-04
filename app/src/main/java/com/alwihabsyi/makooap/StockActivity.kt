@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alwihabsyi.makooap.databinding.ActivityStockBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 class StockActivity : AppCompatActivity() {
@@ -18,11 +19,13 @@ class StockActivity : AppCompatActivity() {
     private lateinit var userRecyclerView: RecyclerView
     private lateinit var userArrayList: ArrayList<DatabaseStok>
     private lateinit var database: DatabaseReference
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityStockBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        auth = FirebaseAuth.getInstance()
 
         //RV STOK START
         userRecyclerView = findViewById(R.id.rv_stoklist)
@@ -44,7 +47,7 @@ class StockActivity : AppCompatActivity() {
 
     private fun getItemsData(){
 
-        database = FirebaseDatabase.getInstance().getReference("Items")
+        database = FirebaseDatabase.getInstance().getReference("${auth.currentUser?.uid}+Items")
         database.addValueEventListener(object: ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){

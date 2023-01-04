@@ -22,6 +22,7 @@ import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 
@@ -34,6 +35,7 @@ class LaporanPenjualan : AppCompatActivity() {
     private lateinit var chartArrayList: ArrayList<DataJual>
     private lateinit var database: DatabaseReference
     private lateinit var databaselaporan: DatabaseReference
+    private lateinit var auth: FirebaseAuth
     private lateinit var list: ArrayList<BarEntry>
     private lateinit var chartStyle: BarStyle
     private lateinit var barChart: BarChart
@@ -43,6 +45,7 @@ class LaporanPenjualan : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLaporanPenjualanBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        auth = FirebaseAuth.getInstance()
 
         //RV JUAL START
         RecyclerView = findViewById(R.id.rv_listjual)
@@ -73,7 +76,7 @@ class LaporanPenjualan : AppCompatActivity() {
 
             val yesbtn = dialogBinding.findViewById<Button>(R.id.btn_yes)
             yesbtn.setOnClickListener {
-                database = FirebaseDatabase.getInstance().getReference("Laporan")
+                database = FirebaseDatabase.getInstance().getReference("${auth.currentUser?.uid}+Laporan")
                 database.get().addOnSuccessListener {
                     if (it.exists()) {
                         database.removeValue().addOnSuccessListener {
@@ -107,8 +110,8 @@ class LaporanPenjualan : AppCompatActivity() {
 
     private fun getDataJual() {
 
-        database = FirebaseDatabase.getInstance().getReference("Sale")
-        databaselaporan = FirebaseDatabase.getInstance().getReference("Laporan")
+        database = FirebaseDatabase.getInstance().getReference("${auth.currentUser?.uid}+Sale")
+        databaselaporan = FirebaseDatabase.getInstance().getReference("${auth.currentUser?.uid}+Laporan")
         databaselaporan.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {

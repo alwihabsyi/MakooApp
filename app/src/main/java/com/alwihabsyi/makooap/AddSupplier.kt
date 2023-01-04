@@ -4,18 +4,22 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.alwihabsyi.makooap.databinding.ActivityAddSupplierBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 
 class AddSupplier : AppCompatActivity() {
 
     private lateinit var binding: ActivityAddSupplierBinding
     private lateinit var database: DatabaseReference
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddSupplierBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        auth = FirebaseAuth.getInstance()
 
         binding.btnSavenewsupp.setOnClickListener {
             val aidi = binding.etId.text
@@ -30,7 +34,7 @@ class AddSupplier : AppCompatActivity() {
             val notlp = binding.etNotelp.text.toString()
 
             if(aidi.isNotEmpty() && nabar.isNotEmpty() && jubar.isNotEmpty() && habar.isNotEmpty() && idsup.isNotEmpty()){
-                database = FirebaseDatabase.getInstance().getReference("Supplier")
+                database = FirebaseDatabase.getInstance().getReference("${auth.currentUser?.uid}+Supplier")
                 val supplier = DataSupplier(id, namasupp, jenisbrg, alamatsupp, notlp, "0")
                 database.child(id).setValue(supplier).addOnSuccessListener {
                     binding.etId.text.clear()

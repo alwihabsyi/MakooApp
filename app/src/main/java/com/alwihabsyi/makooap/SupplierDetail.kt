@@ -7,6 +7,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alwihabsyi.makooap.databinding.ActivitySupplierDetailBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 class SupplierDetail : AppCompatActivity() {
@@ -15,11 +16,13 @@ class SupplierDetail : AppCompatActivity() {
     private lateinit var userRecyclerView: RecyclerView
     private lateinit var userArrayList: ArrayList<DatabaseStok>
     private lateinit var database: DatabaseReference
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySupplierDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        auth = FirebaseAuth.getInstance()
 
         val user = intent.getParcelableExtra<DataSupplier>("user")
 
@@ -56,7 +59,7 @@ class SupplierDetail : AppCompatActivity() {
 
     private fun getItemsData() {
         val user = intent.getParcelableExtra<DataSupplier>("user")
-        database = FirebaseDatabase.getInstance().getReference("Items")
+        database = FirebaseDatabase.getInstance().getReference("${auth.currentUser?.uid}+Items")
         database.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){

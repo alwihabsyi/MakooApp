@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.alwihabsyi.makooap.databinding.ActivityPenjualanBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
 
@@ -22,11 +23,13 @@ class Penjualan : AppCompatActivity() {
     private lateinit var userArrayList: ArrayList<DataJual>
     private lateinit var database: DatabaseReference
     private lateinit var databaselaporan: DatabaseReference
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPenjualanBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        auth = FirebaseAuth.getInstance()
 
         //RV JUAL START
         userRecyclerView = findViewById(R.id.rv_mini)
@@ -47,7 +50,7 @@ class Penjualan : AppCompatActivity() {
 
             val yesbtn = dialogBinding.findViewById<Button>(R.id.btn_yes)
             yesbtn.setOnClickListener {
-                database = FirebaseDatabase.getInstance().getReference("Sale")
+                database = FirebaseDatabase.getInstance().getReference("${auth.currentUser?.uid}+Sale")
                 database.get().addOnSuccessListener {
                     if (it.exists()) {
                         database.removeValue().addOnSuccessListener {
@@ -82,8 +85,8 @@ class Penjualan : AppCompatActivity() {
 
     private fun getDataJual() {
 
-        databaselaporan = FirebaseDatabase.getInstance().getReference("Laporan")
-        database = FirebaseDatabase.getInstance().getReference("Sale")
+        databaselaporan = FirebaseDatabase.getInstance().getReference("${auth.currentUser?.uid}+Laporan")
+        database = FirebaseDatabase.getInstance().getReference("${auth.currentUser?.uid}+Sale")
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {

@@ -43,7 +43,7 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        auth = Firebase.auth
+        auth = FirebaseAuth.getInstance()
         //PROFILLL
         profname()
         //TV JUMLAH STOK START
@@ -145,7 +145,7 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
 
     private fun tvjumlahterjual() {
 
-        database = FirebaseDatabase.getInstance().getReference("Laporan")
+        database = FirebaseDatabase.getInstance().getReference("${auth.currentUser?.uid}+Laporan")
         database.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
@@ -182,7 +182,7 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
 
     private fun tvjumlahstok() {
 
-        database = FirebaseDatabase.getInstance().getReference("Items")
+        database = FirebaseDatabase.getInstance().getReference("${auth.currentUser?.uid}+Items")
         database.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
@@ -212,107 +212,5 @@ class FirstFragment : Fragment(R.layout.fragment_first) {
 
         })
     }
-
-//    private fun tvjumlahsupplier() {
-//
-//        database = FirebaseDatabase.getInstance().getReference("Supplier")
-//        database.addValueEventListener(object: ValueEventListener {
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                if(snapshot.exists()){
-//                    for(itemSnapshot in snapshot.children){
-//                        val items = itemSnapshot.getValue(DataSupplier::class.java)
-//                        userArrayList3.add(items!!)
-//                        view?.findViewById<TextView>(R.id.jumlah)?.text = userArrayList3.size.toString()
-//                    }
-//
-//                    val bar = userArrayList3.size.toFloat()
-//                    list.add(PieEntry(bar,"Jumlah Supplier"))
-//
-//                    val pieDataSet= PieDataSet(list, "")
-//                    pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS, 255)
-//                    pieDataSet.valueTextSize = 15f
-//                    pieDataSet.valueTextColor = Color.BLACK
-//
-//                    val pieData = PieData(pieDataSet)
-//                    pieChart.data = pieData
-//                    pieChart.animateY(2000)
-//                }
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//                TODO("Not yet implemented")
-//            }
-//
-//        })
-//    }
-
-//    private fun tvjumlahterjual() {
-//
-//        database = FirebaseDatabase.getInstance().getReference("Laporan")
-//        database.addValueEventListener(object: ValueEventListener {
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                if(snapshot.exists()){
-//                    list.clear()
-//                    for(itemSnapshot in snapshot.children){
-//                        val items = itemSnapshot.getValue(DataLaporan::class.java)
-//                        userArrayList2.add(items!!)
-//                        view?.findViewById<TextView>(R.id.RP)?.text = items.jumlahbarang
-//
-//                        val conv = Integer.parseInt(items.jumlahbarang.toString())
-//                        val pie = conv.toFloat()
-//                        list.add(BarEntry(1f, pie))
-//
-//                        val barDataSet= BarDataSet(list, "Jumlah Terjual")
-//                        barDataSet.setColors(ColorTemplate.MATERIAL_COLORS, 255)
-//                        barDataSet.valueTextSize = 15f
-//                        barDataSet.valueTextColor = Color.BLACK
-//
-//                        val barData = BarData(barDataSet)
-//                        barChart.data = barData
-//                        barChart.animateY(2000)
-//                    }
-//                }
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//                TODO("Not yet implemented")
-//            }
-//
-//        })
-//
-//    }
-//
-//    private fun tvjumlahstok() {
-//
-//        database = FirebaseDatabase.getInstance().getReference("Items")
-//        database.addValueEventListener(object: ValueEventListener {
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                if(snapshot.exists()){
-//                    for(itemSnapshot in snapshot.children){
-//                        val items = itemSnapshot.getValue(DatabaseStok::class.java)
-//                        userArrayList.add(items!!)
-//                        view?.findViewById<TextView>(R.id.jumlah)?.text = userArrayList.size.toString()
-//                    }
-//
-//                    val bar = userArrayList.size.toFloat()
-//                    list.add(BarEntry(3f,bar))
-//
-//                    val pieDataSet= BarDataSet(list, "Jumlah Terjual, Jenis Barang")
-//                    pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS, 255)
-//                    pieDataSet.valueTextSize = 15f
-//                    pieDataSet.valueTextColor = Color.BLACK
-//
-//                    val pieData = BarData(pieDataSet)
-//                    barChart.data = pieData
-//                    barChart.animateY(2000)
-//                }
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//                TODO("Not yet implemented")
-//            }
-//
-//        })
-//    }
 
 }

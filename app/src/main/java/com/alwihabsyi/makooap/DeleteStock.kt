@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import com.alwihabsyi.makooap.databinding.ActivityDeleteStockBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
@@ -18,12 +19,14 @@ class DeleteStock : AppCompatActivity() {
     private lateinit var binding: ActivityDeleteStockBinding
     private lateinit var database: DatabaseReference
     private lateinit var databasesup: DatabaseReference
+    private lateinit var auth: FirebaseAuth
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDeleteStockBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        auth = FirebaseAuth.getInstance()
 
         binding.btnDeletestock.setOnClickListener{
             val id = binding.etId.text.toString()
@@ -38,8 +41,8 @@ class DeleteStock : AppCompatActivity() {
 
                 val yesbtn = dialogBinding.findViewById<Button>(R.id.btn_yes)
                 yesbtn.setOnClickListener {
-                    database = FirebaseDatabase.getInstance().getReference("Items")
-                    databasesup = FirebaseDatabase.getInstance().getReference("Supplier")
+                    database = FirebaseDatabase.getInstance().getReference("${auth.currentUser?.uid}+Items")
+                    databasesup = FirebaseDatabase.getInstance().getReference("${auth.currentUser?.uid}+Supplier")
                     database.child(id).get().addOnSuccessListener {
                         if(it.exists()){
                             val jumlah = Integer.parseInt(it.child("jumlahbarang").value.toString())

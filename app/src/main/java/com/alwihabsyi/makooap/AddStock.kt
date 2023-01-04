@@ -12,6 +12,7 @@ import androidx.core.widget.addTextChangedListener
 import com.alwihabsyi.makooap.databinding.ActivityAddStockBinding
 import com.alwihabsyi.makooap.databinding.ActivityMainBinding
 import com.alwihabsyi.makooap.databinding.ActivityStockBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 class AddStock : AppCompatActivity() {
@@ -19,12 +20,14 @@ class AddStock : AppCompatActivity() {
     private lateinit var binding: ActivityAddStockBinding
     private lateinit var database: DatabaseReference
     private lateinit var database2: DatabaseReference
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddStockBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        database = FirebaseDatabase.getInstance().getReference("Items")
+        auth = FirebaseAuth.getInstance()
+        database = FirebaseDatabase.getInstance().getReference("${auth.currentUser?.uid}+Items")
 
         database.addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -62,8 +65,8 @@ class AddStock : AppCompatActivity() {
             val hargabarang = binding.etHarga.text.toString()
 
             if (aidi.isNotEmpty() && nabar.isNotEmpty() && jubar.isNotEmpty() && habar.isNotEmpty() && idsup.isNotEmpty()) {
-                database2 = FirebaseDatabase.getInstance().getReference("Supplier")
-                database = FirebaseDatabase.getInstance().getReference("Items")
+                database2 = FirebaseDatabase.getInstance().getReference("${auth.currentUser?.uid}+Supplier")
+                database = FirebaseDatabase.getInstance().getReference("${auth.currentUser?.uid}+Items")
                 database.child(id).get().addOnSuccessListener {
                     if (it.exists()) {
                         val jumlahbrang =

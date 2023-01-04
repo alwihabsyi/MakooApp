@@ -129,6 +129,7 @@
                     android:text="Keamanan" />
 
                 <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/btn_security"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_centerVertical="true"

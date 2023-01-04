@@ -50,6 +50,7 @@ class AuthActivity : AppCompatActivity() {
                     Toast.makeText(this, "Berhasil Masuk", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
+                    finish()
                 } else {
                     Toast.makeText(this, "Gagal Masuk", Toast.LENGTH_SHORT).show()
                 }

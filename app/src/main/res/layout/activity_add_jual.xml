@@ -61,12 +61,14 @@
                     app:boxCornerRadiusBottomStart="10dp"
                     app:boxCornerRadiusTopEnd="10dp"
                     app:boxCornerRadiusTopStart="10dp"
+                    app:boxStrokeColor="#264A80"
                     app:boxStrokeWidth="0dp">
 
                     <EditText
                         android:id="@+id/et_idjual"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:textCursorDrawable="@null"
                         android:maxLength="3"
                         android:paddingTop="20dp" />
 
@@ -92,6 +94,7 @@
                     app:boxCornerRadiusBottomEnd="10dp"
                     app:boxCornerRadiusBottomStart="10dp"
                     app:boxCornerRadiusTopEnd="10dp"
+                    app:boxStrokeColor="#264A80"
                     app:boxCornerRadiusTopStart="10dp"
                     app:boxStrokeWidth="0dp">
 
@@ -99,6 +102,7 @@
                         android:id="@+id/et_jumlahterjual"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:textCursorDrawable="@null"
                         android:inputType="number"
                         android:maxLength="4"
                         android:paddingTop="20dp" />

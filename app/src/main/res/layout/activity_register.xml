@@ -65,6 +65,7 @@
                 app:boxCornerRadiusBottomEnd="15dp"
                 app:boxCornerRadiusBottomStart="15dp"
                 app:boxCornerRadiusTopEnd="15dp"
+                app:boxStrokeColor="#264A80"
                 app:boxCornerRadiusTopStart="15dp"
                 app:boxStrokeWidth="0dp">
 
@@ -73,6 +74,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="text"
+                    android:textCursorDrawable="@null"
                     android:maxLength="6"
                     android:paddingTop="20dp" />
 
@@ -99,6 +101,7 @@
                 app:boxBackgroundMode="outline"
                 app:boxCornerRadiusBottomEnd="15dp"
                 app:boxCornerRadiusBottomStart="15dp"
+                app:boxStrokeColor="#264A80"
                 app:boxCornerRadiusTopEnd="15dp"
                 app:boxCornerRadiusTopStart="15dp"
                 app:boxStrokeWidth="0dp">
@@ -107,6 +110,7 @@
                     android:id="@+id/et_email"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:textCursorDrawable="@null"
                     android:inputType="textEmailAddress"
                     android:paddingTop="20dp" />
 
@@ -136,6 +140,7 @@
                 app:boxCornerRadiusTopEnd="15dp"
                 app:boxCornerRadiusTopStart="15dp"
                 app:boxStrokeWidth="0dp"
+                app:boxStrokeColor="#264A80"
                 app:passwordToggleEnabled="true"
                 app:passwordToggleTint="#888888">
 
@@ -143,6 +148,7 @@
                     android:id="@+id/et_password"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:textCursorDrawable="@null"
                     android:maxLength="20"
                     android:inputType="textPassword"
                     android:paddingTop="20dp" />

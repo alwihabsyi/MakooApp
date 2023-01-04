@@ -36,6 +36,7 @@
         app:boxBackgroundMode="outline"
         app:boxCornerRadiusBottomEnd="15dp"
         app:boxCornerRadiusBottomStart="15dp"
+        app:boxStrokeColor="#264A80"
         app:boxCornerRadiusTopEnd="15dp"
         app:boxCornerRadiusTopStart="15dp"
         app:boxStrokeWidth="0dp">
@@ -44,6 +45,7 @@
             android:id="@+id/et_uname"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textCursorDrawable="@null"
             android:inputType="text"
             android:maxLength="6"
             android:paddingTop="20dp" />

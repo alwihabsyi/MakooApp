@@ -23,7 +23,7 @@
         android:layout_marginTop="10dp"
         android:layout_below="@id/logosplash"
         android:fontFamily="@font/poppins_regular"
-        android:textSize="30sp"
-        android:text="Makoo App"/>
+        android:textSize="20sp"
+        android:text="MAKOO APP"/>
 
 </RelativeLayout>

@@ -59,10 +59,6 @@ class Register : AppCompatActivity() {
                     val uid = auth.currentUser?.uid
                     val datauser = DataUser(uid,emInput,user)
                     database.child(uid!!).setValue(datauser)
-
-                    //intent to login page
-                    val intent = Intent(this, AuthActivity::class.java)
-                    startActivity(intent)
                 } else {
                     Toast.makeText(this, "Gagal Mendaftar", Toast.LENGTH_SHORT).show()
                 }

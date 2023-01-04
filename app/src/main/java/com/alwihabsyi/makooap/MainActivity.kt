@@ -1,5 +1,6 @@
 package com.alwihabsyi.makooap
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,7 @@ import android.view.Window
 import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.cardview.widget.CardView
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.alwihabsyi.makooap.databinding.ActivityMainBinding
@@ -34,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-
+        auth = FirebaseAuth.getInstance()
 
         list = ArrayList()
         userArrayList = arrayListOf<DataUser>()
@@ -42,6 +44,13 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_container) as NavHostFragment
         navController = navHostFragment.navController
         setupSmoothBottomMenu()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if(auth.currentUser == null){
+            finish()
+        }
     }
 
     private fun setupSmoothBottomMenu(){

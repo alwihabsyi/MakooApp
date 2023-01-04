@@ -40,6 +40,11 @@ class ThirdFragment : Fragment(R.layout.fragment_third) {
             val intent = Intent(view.context, ProfileEdit::class.java)
             startActivity(intent)
         }
+
+        view.findViewById<ImageView>(R.id.btn_security).setOnClickListener {
+            val intent = Intent(view.context, Security::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun profnamepro() {
